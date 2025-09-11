@@ -1,0 +1,30 @@
+required: true
+content:
+  application/json:
+    schema:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 255
+          description: Full name of the author
+        biography:
+          type: string
+          maxLength: 2000
+          description: Brief biography of the author
+        email:
+          type: string
+          format: email
+          description: Author's contact email
+        website:
+          type: string
+          format: uri
+          description: Author's personal or professional website
+    example:
+      name: "J.R.R. Tolkien"
+      biography: "English writer and professor, best known for The Hobbit and The Lord of the Rings."
+      email: "tolkien@example.com"
+      website: "https://www.tolkiensociety.org"

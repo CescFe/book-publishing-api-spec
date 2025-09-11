@@ -1,0 +1,5 @@
+description: Author updated successfully
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/author.yaml'
