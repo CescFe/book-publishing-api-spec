@@ -1,0 +1,34 @@
+name: Validate OpenAPI Specification
+
+on:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'specs/**/*.yaml'
+      - 'specs/**/*.yml'
+      - '.github/workflows/validate-openapi.yml'
+  push:
+    branches: [ main ]
+    paths:
+      - 'specs/**/*.yaml'
+      - 'specs/**/*.yml'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    name: Validate OpenAPI Spec
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install Redocly CLI
+        run: npm install -g @redocly/cli
+
+      - name: Validate OpenAPI specification
+        run: redocly lint specs/openapi.yaml
