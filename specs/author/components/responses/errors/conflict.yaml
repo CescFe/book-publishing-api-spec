@@ -1,0 +1,11 @@
+description: Conflict - resource already exists or version mismatch
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+    example:
+      error: "Version mismatch - resource has been modified by another user"

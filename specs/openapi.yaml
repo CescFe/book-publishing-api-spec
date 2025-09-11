@@ -1,0 +1,50 @@
+openapi: 3.0.4
+info:
+  title: Book Publishing API
+  version: 0.1.0
+  description: API for managing books, authors, and collections
+  contact:
+    name: FrancescFe
+    url: https://github.com/FrancescFe
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: https://dev.api.bookpublishing.com/v1
+    description: Development server
+  - url: https://api.bookpublishing.com/v1
+    description: Production server
+
+security:
+  - BearerAuth: []
+  - ApiKeyAuth: []
+  - {}
+
+paths:
+  /authors:
+    $ref: './author/paths/authors.yaml'
+  /authors/{id}:
+    $ref: './author/paths/authors-id.yaml'
+
+components:
+  schemas:
+    Author:
+      $ref: './author/components/schemas/author.yaml'
+
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token for authentication
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key for authentication
+
+
+tags:
+  - name: Authors
+    description: Operations related to authors

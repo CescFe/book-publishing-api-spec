@@ -1,0 +1,11 @@
+description: Internal server error
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+    example:
+      error: "Internal server error"

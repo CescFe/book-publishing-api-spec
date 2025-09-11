@@ -1,0 +1,19 @@
+description: Bad request - invalid input data
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+        details:
+          type: array
+          items:
+            type: string
+          description: Detailed validation errors
+    example:
+      error: "Validation failed"
+      details:
+        - "name is required"
+        - "email format is invalid"

@@ -1,0 +1,40 @@
+description: List of authors retrieved successfully
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '../schemas/author.yaml'
+        meta:
+          type: object
+          properties:
+            page:
+              type: integer
+              description: Current page number
+            limit:
+              type: integer
+              description: Number of items per page
+            total:
+              type: integer
+              description: Total number of authors
+            totalPages:
+              type: integer
+              description: Total number of pages
+    example:
+      data:
+        - id: 1
+          name: "J.R.R. Tolkien"
+          version: 1
+          biography: "English writer and professor, best known for The Hobbit and The Lord of the Rings."
+          email: "tolkien@example.com"
+          website: "https://www.tolkiensociety.org"
+          createdAt: "2024-01-15T10:30:00Z"
+          updatedAt: "2024-01-15T10:30:00Z"
+      meta:
+        page: 1
+        limit: 20
+        total: 1
+        totalPages: 1
