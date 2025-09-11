@@ -1,0 +1,83 @@
+openapi: 3.1.1
+info:
+  title: Book Publishing API
+  version: 0.1.0
+  description: API for managing books, authors, and collections
+  contact:
+    name: FrancescFe
+    url: https://github.com/FrancescFe
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: http://localhost:8080/api/v1
+    description: Local server
+  - url: https://api.bookpublishing.com/v1
+    description: Production server
+
+paths:
+  /authors:
+    get:
+      summary: Get all authors
+      tags:
+        - Authors
+      responses:
+        '200':
+          description: List of authors
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Author'
+    post:
+      summary: Create a new author
+      tags:
+        - Authors
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Author'
+      responses:
+        '201':
+          description: Author created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Author'
+        '400':
+          description: Invalid input
+
+  /authors/{id}:
+    get:
+      summary: Get author by ID
+      tags:
+        - Authors
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Author ID
+      responses:
+        '200':
+          description: Author details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Author'
+        '404':
+          description: Author not found
+
+components:
+  schemas:
+    Author:
+      $ref: './components/schemas/author.yaml'
+
+tags:
+  - name: Authors
+    description: Operations related to authors
