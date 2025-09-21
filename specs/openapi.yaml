@@ -29,19 +29,10 @@ paths:
 
 components:
   schemas:
+    Collection:
+      $ref: './collection/components/schemas/collection.yaml'
     Author:
-      allOf:
-        - $ref: './author/components/schemas/person.yaml'
-        - type: object
-          properties:
-            roles:
-              type: array
-              items:
-                type: string
-                enum: [AUTHOR, ILLUSTRATOR]
-              contains:
-                const: AUTHOR
-              description: Must contain at least AUTHOR role
+      $ref: './author/components/schemas/author.yaml'
 
   securitySchemes:
     BearerAuth:

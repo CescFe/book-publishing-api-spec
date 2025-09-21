@@ -1,0 +1,15 @@
+allOf:
+  - $ref: '../../../person/components/schemas/person.yaml'
+  - type: object
+    properties:
+      roles:
+        type: array
+        items:
+          type: string
+          enum: [AUTHOR, ILLUSTRATOR]
+        minItems: 1
+        maxItems: 2
+        minContains: 1
+        contains:
+          const: AUTHOR
+        description: Must contain at least AUTHOR role

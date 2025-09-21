@@ -25,6 +25,7 @@ content:
             enum: [AUTHOR, ILLUSTRATOR]
           minItems: 1
           maxItems: 2
+          minContains: 1
           contains:
             const: AUTHOR
           description: Must contain at least AUTHOR role, can also include ILLUSTRATOR

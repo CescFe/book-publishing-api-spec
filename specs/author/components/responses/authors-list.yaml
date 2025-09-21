@@ -7,7 +7,7 @@ content:
         data:
           type: array
           items:
-            $ref: '../schemas/person.yaml'
+            $ref: '../schemas/author.yaml'
         meta:
           type: object
           properties:
