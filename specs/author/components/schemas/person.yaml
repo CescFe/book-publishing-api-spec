@@ -1,25 +1,38 @@
 type: object
 required:
-  - name
+  - full_name
+  - roles
 properties:
   id:
-    type: integer
-    format: int64
+    type: string
+    format: uuid
     readOnly: true
     description: Unique identifier for the author
-    example: 1
-  name:
-    type: string
-    description: Full name of the author
-    minLength: 1
-    maxLength: 255
-    example: "J.R.R. Tolkien"
+    example: "da420b0a-64aa-470d-991e-7fcb7a936229"
   version:
     type: integer
     format: int64
     readOnly: true
     description: Version number for optimistic locking
     example: 1
+  full_name:
+    type: string
+    description: Full name of the author
+    minLength: 1
+    maxLength: 255
+    example: "John Ronald Reuel Tolkien"
+  pseudonym:
+    type: string
+    description: Pseudonym of the author
+    minLength: 1
+    maxLength: 255
+    example: "J.R.R. Tolkien"
+  roles:
+    type: array
+    items:
+      type: string
+      enum: [AUTHOR, ILLUSTRATOR]
+    example: ["AUTHOR"]
   biography:
     type: string
     description: Brief biography of the author
@@ -35,13 +48,13 @@ properties:
     format: uri
     description: Author's personal or professional website
     example: "https://www.tolkiensociety.org"
-  createdAt:
+  created_at:
     type: string
     format: date-time
     readOnly: true
     description: Timestamp when the author record was created
     example: "2024-01-15T10:30:00Z"
-  updatedAt:
+  updated_at:
     type: string
     format: date-time
     readOnly: true
