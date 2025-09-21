@@ -18,14 +18,26 @@ properties:
     type: string
     enum: [CHILDREN, YOUNG_ADULT, ADULT]
     example: "ADULT"
+  primary_language:
+    $ref: './enums/language.yaml'
+    example: "ENGLISH"
+  secondary_languages:
+    type: array
+    items:
+      $ref: './enums/language.yaml'
+    maxItems: 3
+    description: Secondary languages associated with the collection
+    example: ["CATALAN", "SPANISH"]
   primary_genre:
-    type: string
-    example: "Fantasy"
+    $ref: './enums/genre.yaml'
+    example: "FANTASY"
   secondary_genres:
     type: array
     items:
-      type: string
-    example: ["Adventure", "Epic"]
+      $ref: './enums/genre.yaml'
+    maxItems: 3
+    description: Secondary genres associated with the collection
+    example: ["ADVENTURE", "HISTORICAL_FICTION"]
   version:
     type: integer
     format: int64
