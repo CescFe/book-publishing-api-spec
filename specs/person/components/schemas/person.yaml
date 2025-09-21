@@ -24,7 +24,7 @@ properties:
   roles:
     type: array
     items:
-      $ref: './enums/role.yaml'
+      $ref: '../../../shared/components/schemas/enums/role.yaml'
     example: ["AUTHOR"]
   biography:
     type: string
