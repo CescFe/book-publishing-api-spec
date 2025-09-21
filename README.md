@@ -15,7 +15,4 @@ redocly lint specs/openapi.yaml
 
 # Generate documentation
 redocly build-docs specs/openapi.yaml --output=docs/index.html
-
-# Preview documentation locally
-redocly preview-docs specs/openapi.yaml
 ```
