@@ -1,0 +1,7 @@
+type: string
+enum:
+  - AUTHOR
+  - ILLUSTRATOR
+  - TRANSLATOR
+  - CURATOR
+description: Person role

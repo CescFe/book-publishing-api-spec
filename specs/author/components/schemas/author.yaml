@@ -1,0 +1,11 @@
+allOf:
+  - $ref: '../../../person/components/schemas/person.yaml'
+  - type: object
+    properties:
+      roles:
+        type: array
+        items:
+          $ref: '../../../shared/components/schemas/enums/role.yaml'
+        contains:
+          const: AUTHOR
+        description: Must contain at least AUTHOR role

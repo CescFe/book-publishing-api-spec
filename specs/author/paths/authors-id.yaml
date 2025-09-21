@@ -16,9 +16,9 @@ get:
     '200':
       $ref: '../components/responses/author-detail.yaml'
     '404':
-      $ref: '../components/responses/errors/not-found.yaml'
+      $ref: '../../shared/components/responses/errors/not-found.yaml'
     '500':
-      $ref: '../components/responses/errors/internal-error.yaml'
+      $ref: '../../shared/components/responses/errors/internal-error.yaml'
 
 put:
   operationId: updateAuthor
@@ -40,13 +40,13 @@ put:
     '200':
       $ref: '../components/responses/author-updated.yaml'
     '400':
-      $ref: '../components/responses/errors/bad-request.yaml'
+      $ref: '../../shared/components/responses/errors/bad-request.yaml'
     '404':
-      $ref: '../components/responses/errors/not-found.yaml'
+      $ref: '../../shared/components/responses/errors/not-found.yaml'
     '409':
-      $ref: '../components/responses/errors/conflict.yaml'
+      $ref: '../../shared/components/responses/errors/conflict.yaml'
     '500':
-      $ref: '../components/responses/errors/internal-error.yaml'
+      $ref: '../../shared/components/responses/errors/internal-error.yaml'
 
 delete:
   operationId: deleteAuthor
@@ -66,8 +66,8 @@ delete:
     '204':
       $ref: '../components/responses/author-deleted.yaml'
     '404':
-      $ref: '../components/responses/errors/not-found.yaml'
+      $ref: '../../shared/components/responses/errors/not-found.yaml'
     '409':
-      $ref: '../components/responses/errors/conflict.yaml'
+      $ref: '../../shared/components/responses/errors/conflict.yaml'
     '500':
-      $ref: '../components/responses/errors/internal-error.yaml'
+      $ref: '../../shared/components/responses/errors/internal-error.yaml'

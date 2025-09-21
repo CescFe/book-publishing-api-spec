@@ -1,0 +1,57 @@
+type: object
+required:
+  - name
+properties:
+  id:
+    type: string
+    format: uuid
+    readOnly: true
+    description: Unique identifier for the collection
+    example: "da420b0a-64aa-470d-991e-7fcb7a936229"
+  name:
+    type: string
+    description: Collection name
+    minLength: 1
+    maxLength: 80
+    example: "Fantasy Classics"
+  reading_level:
+    type: string
+    enum: [CHILDREN, YOUNG_ADULT, ADULT]
+    example: "ADULT"
+  primary_language:
+    $ref: './enums/language.yaml'
+    example: "ENGLISH"
+  secondary_languages:
+    type: array
+    items:
+      $ref: './enums/language.yaml'
+    maxItems: 3
+    description: Secondary languages associated with the collection
+    example: ["CATALAN", "SPANISH"]
+  primary_genre:
+    $ref: './enums/genre.yaml'
+    example: "FANTASY"
+  secondary_genres:
+    type: array
+    items:
+      $ref: './enums/genre.yaml'
+    maxItems: 3
+    description: Secondary genres associated with the collection
+    example: ["ADVENTURE", "HISTORICAL_FICTION"]
+  version:
+    type: integer
+    format: int64
+    readOnly: true
+    example: 2
+  created_at:
+    type: string
+    format: date-time
+    readOnly: true
+    description: Timestamp when the collection record was created
+    example: "2024-01-15T10:30:00Z"
+  updated_at:
+    type: string
+    format: date-time
+    readOnly: true
+    description: Timestamp when the collection record was last updated
+    example: "2024-01-15T10:30:00Z"

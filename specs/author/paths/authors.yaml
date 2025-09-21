@@ -33,9 +33,9 @@ get:
     '200':
       $ref: '../components/responses/authors-list.yaml'
     '400':
-      $ref: '../components/responses/errors/bad-request.yaml'
+      $ref: '../../shared/components/responses/errors/bad-request.yaml'
     '500':
-      $ref: '../components/responses/errors/internal-error.yaml'
+      $ref: '../../shared/components/responses/errors/internal-error.yaml'
 
 post:
   operationId: createAuthor
@@ -49,8 +49,8 @@ post:
     '201':
       $ref: '../components/responses/author-created.yaml'
     '400':
-      $ref: '../components/responses/errors/bad-request.yaml'
+      $ref: '../../shared/components/responses/errors/bad-request.yaml'
     '409':
-      $ref: '../components/responses/errors/conflict.yaml'
+      $ref: '../../shared/components/responses/errors/conflict.yaml'
     '500':
-      $ref: '../components/responses/errors/internal-error.yaml'
+      $ref: '../../shared/components/responses/errors/internal-error.yaml'

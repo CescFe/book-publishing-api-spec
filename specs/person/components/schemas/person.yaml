@@ -9,12 +9,6 @@ properties:
     readOnly: true
     description: Unique identifier for the author
     example: "da420b0a-64aa-470d-991e-7fcb7a936229"
-  version:
-    type: integer
-    format: int64
-    readOnly: true
-    description: Version number for optimistic locking
-    example: 1
   full_name:
     type: string
     description: Full name of the author
@@ -30,8 +24,7 @@ properties:
   roles:
     type: array
     items:
-      type: string
-      enum: [AUTHOR, ILLUSTRATOR]
+      $ref: '../../../shared/components/schemas/enums/role.yaml'
     example: ["AUTHOR"]
   biography:
     type: string
@@ -48,6 +41,12 @@ properties:
     format: uri
     description: Author's personal or professional website
     example: "https://www.tolkiensociety.org"
+  version:
+    type: integer
+    format: int64
+    readOnly: true
+    description: Version number for optimistic locking
+    example: 1
   created_at:
     type: string
     format: date-time

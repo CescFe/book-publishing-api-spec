@@ -2,4 +2,4 @@ description: Author created successfully
 content:
   application/json:
     schema:
-      $ref: '../schemas/person.yaml'
+      $ref: '../schemas/author.yaml'
