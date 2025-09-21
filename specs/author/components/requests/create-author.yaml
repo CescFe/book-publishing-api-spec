@@ -4,13 +4,29 @@ content:
     schema:
       type: object
       required:
-        - name
+        - full_name
+        - roles
       properties:
-        name:
+        full_name:
           type: string
           minLength: 1
           maxLength: 255
           description: Full name of the author
+        pseudonym:
+          type: string
+          minLength: 1
+          maxLength: 255
+          description: Pseudonym of the author
+        roles:
+          type: array
+          items:
+            type: string
+            enum: [AUTHOR, ILLUSTRATOR]
+          minItems: 1
+          maxItems: 2
+          contains:
+            const: AUTHOR
+          description: Must contain at least AUTHOR role, can also include ILLUSTRATOR
         biography:
           type: string
           maxLength: 2000
@@ -24,7 +40,9 @@ content:
           format: uri
           description: Author's personal or professional website
     example:
-      name: "J.R.R. Tolkien"
+      full_name: "John Ronald Reuel Tolkien"
+      pseudonym: "J.R.R. Tolkien"
+      roles: ["AUTHOR"]
       biography: "English writer and professor, best known for The Hobbit and The Lord of the Rings."
       email: "tolkien@example.com"
       website: "https://www.tolkiensociety.org"

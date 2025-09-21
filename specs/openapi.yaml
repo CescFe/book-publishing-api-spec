@@ -1,4 +1,4 @@
-openapi: 3.0.4
+openapi: 3.1.0
 info:
   title: Book Publishing API
   version: 0.1.0
@@ -30,7 +30,18 @@ paths:
 components:
   schemas:
     Author:
-      $ref: './author/components/schemas/person.yaml'
+      allOf:
+        - $ref: './author/components/schemas/person.yaml'
+        - type: object
+          properties:
+            roles:
+              type: array
+              items:
+                type: string
+                enum: [AUTHOR, ILLUSTRATOR]
+              contains:
+                const: AUTHOR
+              description: Must contain at least AUTHOR role
 
   securitySchemes:
     BearerAuth:
