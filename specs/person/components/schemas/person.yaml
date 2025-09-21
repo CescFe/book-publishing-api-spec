@@ -24,8 +24,7 @@ properties:
   roles:
     type: array
     items:
-      type: string
-      enum: [AUTHOR, ILLUSTRATOR]
+      $ref: './enums/role.yaml'
     example: ["AUTHOR"]
   biography:
     type: string
