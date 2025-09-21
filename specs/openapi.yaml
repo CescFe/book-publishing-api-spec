@@ -30,7 +30,7 @@ paths:
 components:
   schemas:
     Author:
-      $ref: './author/components/schemas/author.yaml'
+      $ref: './author/components/schemas/person.yaml'
 
   securitySchemes:
     BearerAuth:
