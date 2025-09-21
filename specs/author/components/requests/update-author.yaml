@@ -2,45 +2,7 @@ required: true
 content:
   application/json:
     schema:
-      type: object
-      required:
-        - full_name
-        - roles
-        - version
-      properties:
-        full_name:
-          type: string
-          minLength: 1
-          maxLength: 255
-          description: Full name of the author
-        pseudonym:
-          type: string
-          minLength: 1
-          maxLength: 255
-          description: Pseudonym of the author
-        roles:
-          type: array
-          items:
-            $ref: '../../../shared/components/schemas/enums/role.yaml'
-          contains:
-            const: AUTHOR
-          description: Must contain at least AUTHOR role, can also include ILLUSTRATOR
-        version:
-          type: integer
-          format: int64
-          description: Current version number for optimistic locking
-        biography:
-          type: string
-          maxLength: 2000
-          description: Brief biography of the author
-        email:
-          type: string
-          format: email
-          description: Author's contact email
-        website:
-          type: string
-          format: uri
-          description: Author's personal or professional website
+      $ref: '../schemas/author.yaml'
     example:
       full_name: "J.R.R. Tolkien"
       pseudonym: "J.R.R. Tolkien"

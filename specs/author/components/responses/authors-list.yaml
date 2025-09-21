@@ -23,19 +23,3 @@ content:
             totalPages:
               type: integer
               description: Total number of pages
-    example:
-      data:
-        - id: "da420b0a-64aa-470d-991e-7fcb7a936229"
-          version: 1
-          full_name: "J.R.R. Tolkien"
-          roles: ["AUTHOR"]
-          biography: "English writer and professor, best known for The Hobbit and The Lord of the Rings."
-          email: "tolkien@example.com"
-          website: "https://www.tolkiensociety.org"
-          created_at: "2024-01-15T10:30:00Z"
-          updated_at: "2024-01-15T10:30:00Z"
-      meta:
-        page: 1
-        limit: 20
-        total: 1
-        totalPages: 1
