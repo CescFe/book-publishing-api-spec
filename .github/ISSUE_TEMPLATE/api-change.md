@@ -1,8 +1,8 @@
 ---
 name: 💡 Feature Request
-about: Implement a new feature or enhancement for the repository
-title: '[FEAT] '
-labels: feat
+about: Implement a change for the API specification
+title: '[API] '
+labels: api-change
 assignees: FrancescFe
 ---
 
