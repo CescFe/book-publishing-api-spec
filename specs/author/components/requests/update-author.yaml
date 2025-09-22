@@ -3,11 +3,3 @@ content:
   application/json:
     schema:
       $ref: '../schemas/author.yaml'
-    example:
-      full_name: "J.R.R. Tolkien"
-      pseudonym: "J.R.R. Tolkien"
-      roles: ["AUTHOR"]
-      version: 1
-      biography: "English writer and professor, best known for The Hobbit and The Lord of the Rings."
-      email: "tolkien@example.com"
-      website: "https://www.tolkiensociety.org"
