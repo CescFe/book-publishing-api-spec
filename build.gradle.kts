@@ -21,12 +21,12 @@ openApiValidate {
     recommend = true
 }
 
-val generatedDir: String = layout.buildDirectory
-    .dir("generated-sources/openapi")
-    .get()
-    .asFile.absolutePath
+val generatedDir: String =
+    layout.buildDirectory
+        .dir("generated-sources/openapi")
+        .get()
+        .asFile.absolutePath
 val openApiPackage = "org.cescfe.bookpublishing.infrastructure.openapi"
-
 
 openApiGenerate {
     generatorName.set("kotlin-spring")
@@ -48,8 +48,8 @@ openApiGenerate {
             "interfaceOnly" to "true",
             "modelPropertyNaming" to "original",
             "serializationLibrary" to "jackson",
-            "skipDefaultInterface" to "true"
-        )
+            "skipDefaultInterface" to "true",
+        ),
     )
 }
 
@@ -57,7 +57,7 @@ sourceSets {
     main {
         kotlin {
             srcDirs(
-                "$generatedDir/src/main/kotlin"
+                "$generatedDir/src/main/kotlin",
             )
         }
     }
