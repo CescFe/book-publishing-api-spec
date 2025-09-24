@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version "2.1.21"
+    kotlin("plugin.spring") version "2.1.21"
     id("org.openapi.generator") version "7.15.0"
     id("com.diffplug.spotless") version "7.0.3"
 }
@@ -14,6 +15,14 @@ val ktLint = "1.5.0"
 
 repositories {
     mavenCentral()
+}
+
+dependencies {
+    compileOnly("com.fasterxml.jackson.core:jackson-databind:2.20.0")
+    compileOnly("jakarta.validation:jakarta.validation-api:3.1.1")
+    compileOnly("io.swagger.core.v3:swagger-annotations:2.2.37")
+    compileOnly("org.springframework.boot:spring-boot-starter-web:3.5.6")
+    compileOnly("org.springframework.boot:spring-boot-starter-validation:3.5.6")
 }
 
 openApiValidate {
@@ -37,6 +46,7 @@ openApiGenerate {
     invokerPackage.set("$openApiPackage.invoker")
     modelPackage.set("$openApiPackage.http.inbound.model")
     packageName.set("$openApiPackage.http.inbound")
+    modelNameSuffix.set("DTO")
     configOptions.set(
         mapOf(
             "useTags" to "true",
