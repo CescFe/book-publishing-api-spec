@@ -16,6 +16,14 @@ repositories {
     mavenCentral()
 }
 
+dependencies {
+    compileOnly("com.fasterxml.jackson.core:jackson-databind:2.20.0")
+    compileOnly("jakarta.validation:jakarta.validation-api:3.1.1")
+    compileOnly("io.swagger.core.v3:swagger-annotations:2.2.37")
+    compileOnly("org.springframework.boot:spring-boot-starter-web:3.5.6")
+    compileOnly("org.springframework.boot:spring-boot-starter-validation:3.5.6")
+}
+
 openApiValidate {
     inputSpec.set("$rootDir/specs/openapi.yaml")
     recommend = true
