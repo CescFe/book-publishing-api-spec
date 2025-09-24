@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version "2.1.21"
+    kotlin("plugin.spring") version "2.1.21"
     id("org.openapi.generator") version "7.15.0"
     id("com.diffplug.spotless") version "7.0.3"
 }
@@ -45,6 +46,7 @@ openApiGenerate {
     invokerPackage.set("$openApiPackage.invoker")
     modelPackage.set("$openApiPackage.http.inbound.model")
     packageName.set("$openApiPackage.http.inbound")
+    modelNameSuffix.set("DTO")
     configOptions.set(
         mapOf(
             "useTags" to "true",

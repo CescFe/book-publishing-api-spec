@@ -1,0 +1,7 @@
+name: id
+in: path
+required: true
+schema:
+  type: string
+  format: uuid
+description: Unique identifier of the author

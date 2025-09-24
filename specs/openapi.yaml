@@ -13,53 +13,21 @@ info:
     url: https://opensource.org/licenses/MIT
 
 servers:
-  - url: https://dev.api.bookpublishing.com/v1
-    description: Development server
-  - url: https://api.bookpublishing.com/v1
-    description: Production server
-
-security:
-  - BearerAuth: []
-  - ApiKeyAuth: []
-  - {}
-
-tags:
-  - name: Authors
-    description: Operations related to authors
+  - url: http://localhost:8080
+    description: local server
 
 paths:
   /authors:
     get:
       tags:
-        - Authors
+        - GetAllAuthors
       operationId: getAuthors
       summary: Get all authors
       description: Retrieve a paginated list of all authors
       parameters:
-        - name: page
-          in: query
-          required: false
-          schema:
-            type: integer
-            minimum: 1
-            default: 1
-          description: Page number for pagination
-        - name: limit
-          in: query
-          required: false
-          schema:
-            type: integer
-            minimum: 1
-            maximum: 100
-            default: 20
-          description: Number of authors per page
-        - name: search
-          in: query
-          required: false
-          schema:
-            type: string
-            maxLength: 255
-          description: Search term to filter authors by name
+        - $ref: './shared/components/parameters/pagination.yaml#/page'
+        - $ref: './shared/components/parameters/pagination.yaml#/limit'
+        - $ref: './shared/components/parameters/pagination.yaml#/search'
       responses:
         '200':
           $ref: './author/components/responses/authors-list.yaml'
@@ -69,7 +37,7 @@ paths:
           $ref: './shared/components/responses/errors/internal-error.yaml'
     post:
       tags:
-        - Authors
+        - CreateAuthor
       operationId: createAuthor
       summary: Create a new author
       description: Create a new author with the provided information
@@ -87,18 +55,12 @@ paths:
   /authors/{id}:
     get:
       tags:
-        - Authors
+        - GetAuthorById
       operationId: getAuthorByID
       summary: Get author by ID
       description: Retrieve a single author by their unique identifier
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
-          description: Unique identifier of the author
+        - $ref: './shared/components/parameters/uuid-path.yaml'
       responses:
         '200':
           $ref: './author/components/responses/author-detail.yaml'
@@ -109,18 +71,12 @@ paths:
 
     put:
       tags:
-        - Authors
+        - UpdateAuthorById
       operationId: updateAuthor
       summary: Update an author
       description: Update an existing author by their unique identifier
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
-          description: Unique identifier of the author
+        - $ref: './shared/components/parameters/uuid-path.yaml'
       requestBody:
         $ref: './author/components/requests/update-author.yaml'
       responses:
@@ -137,7 +93,7 @@ paths:
 
     delete:
       tags:
-        - Authors
+        - DeleteAuthorById
       operationId: deleteAuthor
       summary: Delete an author
       description: Delete an existing author by their unique identifier
@@ -166,14 +122,4 @@ components:
     Author:
       $ref: './author/components/schemas/author.yaml'
 
-  securitySchemes:
-    BearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-      description: JWT token for authentication
-    ApiKeyAuth:
-      type: apiKey
-      in: header
-      name: X-API-Key
-      description: API key for authentication
+
