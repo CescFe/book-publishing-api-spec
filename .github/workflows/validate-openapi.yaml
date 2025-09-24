@@ -7,11 +7,14 @@ on:
       - 'specs/**/*.yaml'
       - 'specs/**/*.yml'
       - '.github/workflows/validate-openapi.yml'
+      - 'build.gradle.kts'
   push:
     branches: [ main ]
     paths:
       - 'specs/**/*.yaml'
       - 'specs/**/*.yml'
+      - '.github/workflows/validate-openapi.yml'
+      - 'build.gradle.kts'
 
 jobs:
   validate:
@@ -22,13 +25,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Setup Java
+        uses: actions/setup-java@v4
         with:
-          node-version: '22'
+          java-version: '21'
+          distribution: 'corretto'
 
-      - name: Install Redocly CLI
-        run: npm install -g @redocly/cli
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+        with:
+          gradle-version: wrapper
 
       - name: Validate OpenAPI specification
-        run: redocly lint specs/openapi.yaml
+        run: ./gradlew openApiValidate
+
+      - name: Generate API code (test)
+        run: ./gradlew openApiGenerate
+
+      - name: Check code formatting
+        run: ./gradlew spotlessCheck
