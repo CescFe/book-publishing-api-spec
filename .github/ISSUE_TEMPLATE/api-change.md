@@ -1,5 +1,5 @@
 ---
-name: 💡 Feature Request
+name: 📋 API Specification Change
 about: Implement a change for the API specification
 title: '[API] '
 labels: api-change
