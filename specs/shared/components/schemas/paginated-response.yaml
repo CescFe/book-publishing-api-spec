@@ -1,0 +1,11 @@
+PaginatedResponse:
+  type: object
+  properties:
+    data:
+      type: array
+      items: {}
+    meta:
+      $ref: './pagination-meta.yaml#/PaginationMeta'
+  required:
+    - data
+    - meta

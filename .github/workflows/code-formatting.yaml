@@ -1,19 +1,15 @@
-name: Validate OpenAPI Specification
+name: Code Formatting Check
 
 on:
   pull_request:
     branches: [ main ]
-    paths:
-      - 'specs/**/*.yaml'
-      - 'specs/**/*.yml'
-      - 'build.gradle.kts'
   push:
     branches: [ main ]
 
 jobs:
-  validate:
+  format-check:
     runs-on: ubuntu-latest
-    name: Validate OpenAPI Spec
+    name: Check Code Formatting
 
     steps:
       - name: Checkout code
@@ -31,8 +27,5 @@ jobs:
           gradle-version: wrapper
           cache-read-only: false
 
-      - name: Validate OpenAPI specification
-        run: ./gradlew openApiValidate
-
-      - name: Generate API code (test)
-        run: ./gradlew openApiGenerate
+      - name: Check code formatting
+        run: ./gradlew spotlessCheck

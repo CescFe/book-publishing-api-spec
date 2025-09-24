@@ -1,11 +1,48 @@
-allOf:
-  - $ref: '../../../person/components/schemas/person.yaml'
-  - type: object
-    properties:
-      roles:
-        type: array
-        items:
-          $ref: '../../../shared/components/schemas/enums/role.yaml'
-        contains:
-          const: AUTHOR
-        description: Must contain at least AUTHOR role
+type: object
+required:
+  - full_name
+  - roles
+properties:
+  id:
+    $ref: '../../../shared/components/schemas/id.yaml'
+  full_name:
+    type: string
+    description: Full name of the author
+    minLength: 1
+    maxLength: 255
+    example: "John Ronald Reuel Tolkien"
+  pseudonym:
+    type: string
+    description: Pseudonym of the author
+    minLength: 1
+    maxLength: 255
+    example: "J.R.R. Tolkien"
+  roles:
+    type: array
+    items:
+      $ref: '../../../shared/components/schemas/enums/role.yaml'
+    contains:
+      const: AUTHOR
+    description: Must contain at least AUTHOR role
+    example: ["AUTHOR"]
+  biography:
+    type: string
+    description: Brief biography of the author
+    maxLength: 2000
+    example: "John Ronald Reuel Tolkien was an English writer, poet, philologist, and university professor who is best known as the author of the classic high fantasy works The Hobbit and The Lord of the Rings."
+  email:
+    type: string
+    format: email
+    description: Author's contact email
+    example: "tolkien@example.com"
+  website:
+    type: string
+    format: uri
+    description: Author's personal or professional website
+    example: "https://www.tolkiensociety.org"
+  version:
+    $ref: '../../../shared/components/schemas/version.yaml'
+  created_at:
+    $ref: '../../../shared/components/schemas/created-at.yaml'
+  updated_at:
+    $ref: '../../../shared/components/schemas/updated-at.yaml'
