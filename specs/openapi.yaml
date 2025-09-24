@@ -68,7 +68,6 @@ paths:
           $ref: './shared/components/responses/errors/not-found.yaml'
         '500':
           $ref: './shared/components/responses/errors/internal-error.yaml'
-
     put:
       tags:
         - UpdateAuthorById
@@ -90,7 +89,6 @@ paths:
           $ref: './shared/components/responses/errors/conflict.yaml'
         '500':
           $ref: './shared/components/responses/errors/internal-error.yaml'
-
     delete:
       tags:
         - DeleteAuthorById
@@ -98,13 +96,7 @@ paths:
       summary: Delete an author
       description: Delete an existing author by their unique identifier
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
-          description: Unique identifier of the author
+        - $ref: './shared/components/parameters/uuid-path.yaml'
       responses:
         '204':
           $ref: './author/components/responses/author-deleted.yaml'
