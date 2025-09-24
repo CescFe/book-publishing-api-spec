@@ -113,5 +113,7 @@ components:
       $ref: './collection/components/schemas/collection.yaml'
     Author:
       $ref: './author/components/schemas/author.yaml'
+    Book:
+      $ref: './book/components/schemas/book.yaml'
 
 
