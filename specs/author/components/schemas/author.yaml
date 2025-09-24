@@ -41,11 +41,7 @@ properties:
     description: Author's personal or professional website
     example: "https://www.tolkiensociety.org"
   version:
-    type: integer
-    format: int64
-    readOnly: true
-    description: Version number for optimistic locking
-    example: 1
+    $ref: '../../../shared/components/schemas/version.yaml'
   created_at:
     $ref: '../../../shared/components/schemas/created-at.yaml'
   updated_at:
