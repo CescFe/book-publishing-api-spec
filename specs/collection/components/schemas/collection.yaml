@@ -3,11 +3,7 @@ required:
   - name
 properties:
   id:
-    type: string
-    format: uuid
-    readOnly: true
-    description: Unique identifier for the collection
-    example: "da420b0a-64aa-470d-991e-7fcb7a936229"
+    $ref: '../../../shared/components/schemas/id.yaml'
   name:
     type: string
     description: Collection name
@@ -44,14 +40,6 @@ properties:
     readOnly: true
     example: 2
   created_at:
-    type: string
-    format: date-time
-    readOnly: true
-    description: Timestamp when the collection record was created
-    example: "2024-01-15T10:30:00Z"
+    $ref: '../../../shared/components/schemas/created-at.yaml'
   updated_at:
-    type: string
-    format: date-time
-    readOnly: true
-    description: Timestamp when the collection record was last updated
-    example: "2024-01-15T10:30:00Z"
+    $ref: '../../../shared/components/schemas/updated-at.yaml'

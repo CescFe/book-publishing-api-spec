@@ -1,0 +1,5 @@
+type: string
+format: uuid
+readOnly: true
+description: Unique identifier
+example: "da420b0a-64aa-470d-991e-7fcb7a936229"

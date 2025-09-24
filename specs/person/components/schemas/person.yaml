@@ -4,11 +4,7 @@ required:
   - roles
 properties:
   id:
-    type: string
-    format: uuid
-    readOnly: true
-    description: Unique identifier for the author
-    example: "da420b0a-64aa-470d-991e-7fcb7a936229"
+    $ref: '../../../shared/components/schemas/id.yaml'
   full_name:
     type: string
     description: Full name of the author
@@ -48,14 +44,6 @@ properties:
     description: Version number for optimistic locking
     example: 1
   created_at:
-    type: string
-    format: date-time
-    readOnly: true
-    description: Timestamp when the author record was created
-    example: "2024-01-15T10:30:00Z"
+    $ref: '../../../shared/components/schemas/created-at.yaml'
   updated_at:
-    type: string
-    format: date-time
-    readOnly: true
-    description: Timestamp when the author record was last updated
-    example: "2024-01-15T10:30:00Z"
+    $ref: '../../../shared/components/schemas/updated-at.yaml'
