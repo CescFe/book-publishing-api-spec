@@ -3,14 +3,6 @@ name: Code Formatting Check
 on:
   pull_request:
     branches: [ main ]
-    paths:
-      - '**/*.kt'
-      - '**/*.kts'
-      - '**/*.java'
-      - '**/*.gradle'
-      - '**/*.gradle.kts'
-      - '.editorconfig'
-      - 'build.gradle.kts'
   push:
     branches: [ main ]
     paths:
