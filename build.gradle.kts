@@ -5,13 +5,11 @@ plugins {
     kotlin("jvm") version "2.1.21"
     kotlin("plugin.spring") version "2.1.21"
     id("org.openapi.generator") version "7.15.0"
-    id("com.diffplug.spotless") version "7.0.3"
+    `maven-publish`
 }
 
 group = "org.cescfe"
 version = "0.1.0"
-
-val ktLint = "1.5.0"
 
 repositories {
     mavenCentral()
@@ -90,4 +88,47 @@ tasks.named("compileKotlin").configure {
 
 tasks.withType<KotlinCompile> {
     dependsOn("openApiGenerate")
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            from(components["java"])
+
+            groupId = project.group.toString()
+            artifactId = "book-publishing-api-spec"
+            version = project.version.toString()
+
+            pom {
+                name.set("Book Publishing API Specification")
+                description.set("Generated Kotlin Spring code from OpenAPI specification")
+                url.set("https://github.com/FrancescFe/book-publishing-api-spec")
+
+                licenses {
+                    license {
+                        name.set("MIT")
+                        url.set("https://opensource.org/licenses/MIT")
+                    }
+                }
+
+                developers {
+                    developer {
+                        id.set("FrancescFe")
+                        name.set("FrancescFe")
+                    }
+                }
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/FrancescFe/book-publishing-api-spec")
+            credentials {
+                username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
+                password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
+            }
+        }
+    }
 }
