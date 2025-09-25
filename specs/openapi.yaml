@@ -197,6 +197,96 @@ paths:
         '500':
           $ref: './shared/components/responses/errors/internal-error.yaml'
 
+  /api/v1/books:
+    get:
+      tags:
+        - GetAllBooks
+      operationId: getBooks
+      summary: Get all books
+      description: Retrieve a paginated list of all books
+      parameters:
+        - $ref: './shared/components/parameters/pagination.yaml#/page'
+        - $ref: './shared/components/parameters/pagination.yaml#/limit'
+        - $ref: './shared/components/parameters/pagination.yaml#/search'
+      responses:
+        '200':
+          $ref: './collection/components/responses/collections-list.yaml'
+        '400':
+          $ref: './shared/components/responses/errors/bad-request.yaml'
+        '500':
+          $ref: './shared/components/responses/errors/internal-error.yaml'
+    post:
+      tags:
+        - CreateBooks
+      operationId: createBooks
+      summary: Create a new book
+      description: Create a new book with the provided information
+      requestBody:
+        $ref: './collection/components/requests/create-collection.yaml'
+      responses:
+        '201':
+          $ref: './collection/components/responses/collection-created.yaml'
+        '400':
+          $ref: './shared/components/responses/errors/bad-request.yaml'
+        '409':
+          $ref: './shared/components/responses/errors/conflict.yaml'
+        '500':
+          $ref: './shared/components/responses/errors/internal-error.yaml'
+  /api/v1/books/{id}:
+    get:
+      tags:
+        - GetBookById
+      operationId: getBookByID
+      summary: Get book by ID
+      description: Retrieve a single book by their unique identifier
+      parameters:
+        - $ref: './shared/components/parameters/uuid-path.yaml'
+      responses:
+        '200':
+          $ref: './collection/components/responses/collection-detail.yaml'
+        '404':
+          $ref: './shared/components/responses/errors/not-found.yaml'
+        '500':
+          $ref: './shared/components/responses/errors/internal-error.yaml'
+    put:
+      tags:
+        - UpdateBookById
+      operationId: updateBook
+      summary: Update a book
+      description: Update an existing book by their unique identifier
+      parameters:
+        - $ref: './shared/components/parameters/uuid-path.yaml'
+      requestBody:
+        $ref: './collection/components/requests/update-collection.yaml'
+      responses:
+        '200':
+          $ref: './collection/components/responses/collection-updated.yaml'
+        '400':
+          $ref: './shared/components/responses/errors/bad-request.yaml'
+        '404':
+          $ref: './shared/components/responses/errors/not-found.yaml'
+        '409':
+          $ref: './shared/components/responses/errors/conflict.yaml'
+        '500':
+          $ref: './shared/components/responses/errors/internal-error.yaml'
+    delete:
+      tags:
+        - DeleteBookById
+      operationId: deleteBook
+      summary: Delete an book
+      description: Delete an existing book by their unique identifier
+      parameters:
+        - $ref: './shared/components/parameters/uuid-path.yaml'
+      responses:
+        '204':
+          $ref: './collection/components/responses/collection-deleted.yaml'
+        '404':
+          $ref: './shared/components/responses/errors/not-found.yaml'
+        '409':
+          $ref: './shared/components/responses/errors/conflict.yaml'
+        '500':
+          $ref: './shared/components/responses/errors/internal-error.yaml'
+
 components:
   schemas:
     Collection:
