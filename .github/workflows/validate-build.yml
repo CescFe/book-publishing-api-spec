@@ -1,15 +1,19 @@
-name: Code Formatting Check
+name: Validate Gradle Build
 
 on:
   pull_request:
     branches: [ main ]
+    paths:
+      - 'specs/**/*.yaml'
+      - 'specs/**/*.yml'
+      - 'build.gradle.kts'
   push:
     branches: [ main ]
 
 jobs:
-  format-check:
+  build-and-compile:
     runs-on: ubuntu-latest
-    name: Check Code Formatting
+    name: Build and Compile Validation
 
     steps:
       - name: Checkout code
@@ -27,5 +31,5 @@ jobs:
           gradle-version: wrapper
           cache-read-only: false
 
-      - name: Check code formatting
-        run: ./gradlew spotlessCheck
+      - name: Build project
+        run: ./gradlew build

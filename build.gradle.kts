@@ -5,13 +5,22 @@ plugins {
     kotlin("jvm") version "2.1.21"
     kotlin("plugin.spring") version "2.1.21"
     id("org.openapi.generator") version "7.15.0"
-    id("com.diffplug.spotless") version "7.0.3"
+    `maven-publish`
 }
 
 group = "org.cescfe"
 version = "0.1.0"
 
-val ktLint = "1.5.0"
+val developer = "FrancescFe"
+val repositoryUrl = "https://github.com/FrancescFe/book-publishing-api-spec"
+val packageUrl = "https://maven.pkg.github.com/FrancescFe/book-publishing-api-spec"
+
+val generatedDir: String =
+    layout.buildDirectory
+        .dir("generated-sources/openapi")
+        .get()
+        .asFile.absolutePath
+val openApiPackage = "org.cescfe.bookpublishing.infrastructure.openapi"
 
 repositories {
     mavenCentral()
@@ -32,13 +41,6 @@ openApiValidate {
     inputSpec.set("$rootDir/specs/openapi.yaml")
     recommend = true
 }
-
-val generatedDir: String =
-    layout.buildDirectory
-        .dir("generated-sources/openapi")
-        .get()
-        .asFile.absolutePath
-val openApiPackage = "org.cescfe.bookpublishing.infrastructure.openapi"
 
 openApiGenerate {
     generatorName.set("kotlin-spring")
@@ -92,17 +94,45 @@ tasks.withType<KotlinCompile> {
     dependsOn("openApiGenerate")
 }
 
-listOf(tasks.compileJava, tasks.compileKotlin, tasks.compileTestJava, tasks.compileTestKotlin).forEach {
-    it.get().mustRunAfter(tasks.spotlessCheck)
-}
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            from(components["java"])
 
-spotless {
-    kotlin {
-        ktlint(ktLint).setEditorConfigPath("$rootDir/.editorconfig")
-        targetExclude("**/build/generated-sources/**/*.kt")
+            groupId = project.group.toString()
+            artifactId = "book-publishing-api-spec"
+            version = project.version.toString()
+
+            pom {
+                name.set("Book Publishing API Specification")
+                description.set("Generated Kotlin Spring code from OpenAPI specification")
+                url.set(repositoryUrl)
+
+                licenses {
+                    license {
+                        name.set("MIT")
+                        url.set("https://opensource.org/licenses/MIT")
+                    }
+                }
+
+                developers {
+                    developer {
+                        id.set(developer)
+                        name.set(developer)
+                    }
+                }
+            }
+        }
     }
-    kotlinGradle {
-        ktlint(ktLint).setEditorConfigPath("$rootDir/.editorconfig")
-        target("*.gradle.kts")
+
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri(packageUrl)
+            credentials {
+                username = System.getenv("USERNAME")
+                password = System.getenv("TOKEN")
+            }
+        }
     }
 }
