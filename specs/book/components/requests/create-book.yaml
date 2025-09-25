@@ -1,0 +1,6 @@
+description: Book creation request body
+required: true
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/book.yaml'
