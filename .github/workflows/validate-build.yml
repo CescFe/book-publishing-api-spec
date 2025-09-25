@@ -1,4 +1,4 @@
-name: Validate Build and Compilation
+name: Validate Gradle Build
 
 on:
   pull_request:

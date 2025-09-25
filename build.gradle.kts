@@ -11,6 +11,17 @@ plugins {
 group = "org.cescfe"
 version = "0.1.0"
 
+val developer = "FrancescFe"
+val repositoryUrl = "https://github.com/FrancescFe/book-publishing-api-spec"
+val packageUrl = "https://maven.pkg.github.com/FrancescFe/book-publishing-api-spec"
+
+val generatedDir: String =
+    layout.buildDirectory
+        .dir("generated-sources/openapi")
+        .get()
+        .asFile.absolutePath
+val openApiPackage = "org.cescfe.bookpublishing.infrastructure.openapi"
+
 repositories {
     mavenCentral()
 }
@@ -30,13 +41,6 @@ openApiValidate {
     inputSpec.set("$rootDir/specs/openapi.yaml")
     recommend = true
 }
-
-val generatedDir: String =
-    layout.buildDirectory
-        .dir("generated-sources/openapi")
-        .get()
-        .asFile.absolutePath
-val openApiPackage = "org.cescfe.bookpublishing.infrastructure.openapi"
 
 openApiGenerate {
     generatorName.set("kotlin-spring")
@@ -102,7 +106,7 @@ publishing {
             pom {
                 name.set("Book Publishing API Specification")
                 description.set("Generated Kotlin Spring code from OpenAPI specification")
-                url.set("https://github.com/FrancescFe/book-publishing-api-spec")
+                url.set(repositoryUrl)
 
                 licenses {
                     license {
@@ -113,8 +117,8 @@ publishing {
 
                 developers {
                     developer {
-                        id.set("FrancescFe")
-                        name.set("FrancescFe")
+                        id.set(developer)
+                        name.set(developer)
                     }
                 }
             }
@@ -124,7 +128,7 @@ publishing {
     repositories {
         maven {
             name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/FrancescFe/book-publishing-api-spec")
+            url = uri(packageUrl)
             credentials {
                 username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
                 password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
