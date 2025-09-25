@@ -1,0 +1,5 @@
+description: Book details retrieved successfully
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/book.yaml'

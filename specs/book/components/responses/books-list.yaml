@@ -1,0 +1,12 @@
+description: List of books retrieved successfully
+content:
+  application/json:
+    schema:
+      allOf:
+        - $ref: '../../../shared/components/schemas/paginated-response.yaml#/PaginatedResponse'
+        - type: object
+          properties:
+            data:
+              type: array
+              items:
+                $ref: '../schemas/book.yaml'

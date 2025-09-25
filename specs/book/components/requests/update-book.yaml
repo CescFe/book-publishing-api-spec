@@ -1,0 +1,6 @@
+description: Book updated request body
+required: true
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/book.yaml'
