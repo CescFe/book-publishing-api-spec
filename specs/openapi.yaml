@@ -120,7 +120,7 @@ paths:
         - $ref: './shared/components/parameters/pagination.yaml#/search'
       responses:
         '200':
-          $ref: './author/components/responses/authors-list.yaml'
+          $ref: './collection/components/responses/collections-list.yaml'
         '400':
           $ref: './shared/components/responses/errors/bad-request.yaml'
         '500':
@@ -132,10 +132,10 @@ paths:
       summary: Create a new collection
       description: Create a new collection with the provided information
       requestBody:
-        $ref: './author/components/requests/create-author.yaml'
+        $ref: './collection/components/requests/create-collection.yaml'
       responses:
         '201':
-          $ref: './author/components/responses/author-created.yaml'
+          $ref: './collection/components/responses/collection-created.yaml'
         '400':
           $ref: './shared/components/responses/errors/bad-request.yaml'
         '409':
@@ -153,7 +153,7 @@ paths:
         - $ref: './shared/components/parameters/uuid-path.yaml'
       responses:
         '200':
-          $ref: './author/components/responses/author-detail.yaml'
+          $ref: './collection/components/responses/collection-detail.yaml'
         '404':
           $ref: './shared/components/responses/errors/not-found.yaml'
         '500':
@@ -167,10 +167,10 @@ paths:
       parameters:
         - $ref: './shared/components/parameters/uuid-path.yaml'
       requestBody:
-        $ref: './author/components/requests/update-author.yaml'
+        $ref: './collection/components/requests/update-collection.yaml'
       responses:
         '200':
-          $ref: './author/components/responses/author-updated.yaml'
+          $ref: './collection/components/responses/collection-updated.yaml'
         '400':
           $ref: './shared/components/responses/errors/bad-request.yaml'
         '404':
@@ -189,7 +189,7 @@ paths:
         - $ref: './shared/components/parameters/uuid-path.yaml'
       responses:
         '204':
-          $ref: './author/components/responses/author-deleted.yaml'
+          $ref: './collection/components/responses/collection-deleted.yaml'
         '404':
           $ref: './shared/components/responses/errors/not-found.yaml'
         '409':

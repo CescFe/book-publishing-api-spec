@@ -1,0 +1,5 @@
+description: Collection updated successfully
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/collection.yaml'

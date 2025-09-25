@@ -1,0 +1,6 @@
+description: Collection creation request body
+required: true
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/collection.yaml'
