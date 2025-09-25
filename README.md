@@ -108,7 +108,7 @@ repositories {
     mavenCentral()
     maven {
         name = "GitHubPackages"
-        url = uri("https://maven.pkg.github.com/FrancescFe/book-publishing-api-spec")
+        url = uri("https://maven.pkg.github.com/CescFe/book-publishing-api-spec")
         credentials {
             username = System.getenv("USERNAME")
             password = System.getenv("TOKEN")
@@ -126,4 +126,4 @@ dependencies {
 - **Group**: `org.cescfe`
 - **Artifact**: `book-publishing-api-spec`
 - **Version**: `0.1.0` (or latest)
-- **Repository**: `https://maven.pkg.github.com/FrancescFe/book-publishing-api-spec`
+- **Repository**: `https://maven.pkg.github.com/CescFe/book-publishing-api-spec`

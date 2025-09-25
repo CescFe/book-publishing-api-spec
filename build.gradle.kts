@@ -12,8 +12,8 @@ group = "org.cescfe"
 version = "0.1.0"
 
 val developer = "FrancescFe"
-val repositoryUrl = "https://github.com/FrancescFe/book-publishing-api-spec"
-val packageUrl = "https://maven.pkg.github.com/FrancescFe/book-publishing-api-spec"
+val repositoryUrl = "https://github.com/CescFe/book-publishing-api-spec"
+val packageUrl = "https://maven.pkg.github.com/CescFe/book-publishing-api-spec"
 
 val generatedDir: String =
     layout.buildDirectory
