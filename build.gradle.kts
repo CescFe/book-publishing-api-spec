@@ -23,6 +23,9 @@ dependencies {
     compileOnly("io.swagger.core.v3:swagger-annotations:2.2.37")
     compileOnly("org.springframework.boot:spring-boot-starter-web:3.5.6")
     compileOnly("org.springframework.boot:spring-boot-starter-validation:3.5.6")
+    compileOnly("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.13")
+    compileOnly("io.swagger.core.v3:swagger-models:2.2.37")
+    compileOnly("io.swagger.core.v3:swagger-core:2.2.37")
 }
 
 openApiValidate {

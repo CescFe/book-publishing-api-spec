@@ -1,0 +1,5 @@
+description: Collection details retrieved successfully
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/collection.yaml'

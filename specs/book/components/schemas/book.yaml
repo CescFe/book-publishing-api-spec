@@ -58,14 +58,14 @@ properties:
     example: ["ADVENTURE", "HISTORICAL_FICTION"]
   base_price:
     type: number
-    format: decimal
+    format: double
     minimum: 0
     multipleOf: 0.01
     description: "Base price in euros"
     example: 19.95
   vat_rate:
     type: number
-    format: decimal
+    format: double
     maximum: 1
     minimum: 0
     multipleOf: 0.01
@@ -74,7 +74,7 @@ properties:
     example: 0.04
   final_price:
     type: number
-    format: decimal
+    format: double
     readOnly: true
     description: "Final price including VAT"
     example: 20.748

@@ -1,0 +1,6 @@
+description: Collection updated request body
+required: true
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/collection.yaml'
