@@ -17,7 +17,7 @@ servers:
     description: local server
 
 paths:
-  /authors:
+  /api/v1/authors:
     get:
       tags:
         - GetAllAuthors
@@ -52,7 +52,7 @@ paths:
           $ref: './shared/components/responses/errors/conflict.yaml'
         '500':
           $ref: './shared/components/responses/errors/internal-error.yaml'
-  /authors/{id}:
+  /api/v1/authors/{id}:
     get:
       tags:
         - GetAuthorById
@@ -95,6 +95,96 @@ paths:
       operationId: deleteAuthor
       summary: Delete an author
       description: Delete an existing author by their unique identifier
+      parameters:
+        - $ref: './shared/components/parameters/uuid-path.yaml'
+      responses:
+        '204':
+          $ref: './author/components/responses/author-deleted.yaml'
+        '404':
+          $ref: './shared/components/responses/errors/not-found.yaml'
+        '409':
+          $ref: './shared/components/responses/errors/conflict.yaml'
+        '500':
+          $ref: './shared/components/responses/errors/internal-error.yaml'
+
+  /api/v1/collections:
+    get:
+      tags:
+        - GetAllCollections
+      operationId: getCollections
+      summary: Get all collections
+      description: Retrieve a paginated list of all collections
+      parameters:
+        - $ref: './shared/components/parameters/pagination.yaml#/page'
+        - $ref: './shared/components/parameters/pagination.yaml#/limit'
+        - $ref: './shared/components/parameters/pagination.yaml#/search'
+      responses:
+        '200':
+          $ref: './author/components/responses/authors-list.yaml'
+        '400':
+          $ref: './shared/components/responses/errors/bad-request.yaml'
+        '500':
+          $ref: './shared/components/responses/errors/internal-error.yaml'
+    post:
+      tags:
+        - CreateCollection
+      operationId: createCollection
+      summary: Create a new collection
+      description: Create a new collection with the provided information
+      requestBody:
+        $ref: './author/components/requests/create-author.yaml'
+      responses:
+        '201':
+          $ref: './author/components/responses/author-created.yaml'
+        '400':
+          $ref: './shared/components/responses/errors/bad-request.yaml'
+        '409':
+          $ref: './shared/components/responses/errors/conflict.yaml'
+        '500':
+          $ref: './shared/components/responses/errors/internal-error.yaml'
+  /api/v1/collections/{id}:
+    get:
+      tags:
+        - GetCollectionById
+      operationId: getCollectionByID
+      summary: Get collection by ID
+      description: Retrieve a single collection by their unique identifier
+      parameters:
+        - $ref: './shared/components/parameters/uuid-path.yaml'
+      responses:
+        '200':
+          $ref: './author/components/responses/author-detail.yaml'
+        '404':
+          $ref: './shared/components/responses/errors/not-found.yaml'
+        '500':
+          $ref: './shared/components/responses/errors/internal-error.yaml'
+    put:
+      tags:
+        - UpdateCollectionById
+      operationId: updateCollection
+      summary: Update a collection
+      description: Update an existing collection by their unique identifier
+      parameters:
+        - $ref: './shared/components/parameters/uuid-path.yaml'
+      requestBody:
+        $ref: './author/components/requests/update-author.yaml'
+      responses:
+        '200':
+          $ref: './author/components/responses/author-updated.yaml'
+        '400':
+          $ref: './shared/components/responses/errors/bad-request.yaml'
+        '404':
+          $ref: './shared/components/responses/errors/not-found.yaml'
+        '409':
+          $ref: './shared/components/responses/errors/conflict.yaml'
+        '500':
+          $ref: './shared/components/responses/errors/internal-error.yaml'
+    delete:
+      tags:
+        - DeleteCollectionById
+      operationId: deleteCollection
+      summary: Delete an collection
+      description: Delete an existing collection by their unique identifier
       parameters:
         - $ref: './shared/components/parameters/uuid-path.yaml'
       responses:
