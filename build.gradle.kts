@@ -91,18 +91,3 @@ tasks.named("compileKotlin").configure {
 tasks.withType<KotlinCompile> {
     dependsOn("openApiGenerate")
 }
-
-listOf(tasks.compileJava, tasks.compileKotlin, tasks.compileTestJava, tasks.compileTestKotlin).forEach {
-    it.get().mustRunAfter(tasks.spotlessCheck)
-}
-
-spotless {
-    kotlin {
-        ktlint(ktLint).setEditorConfigPath("$rootDir/.editorconfig")
-        targetExclude("**/build/generated-sources/**/*.kt")
-    }
-    kotlinGradle {
-        ktlint(ktLint).setEditorConfigPath("$rootDir/.editorconfig")
-        target("*.gradle.kts")
-    }
-}
