@@ -10,11 +10,11 @@ PaginationMeta:
     total:
       type: integer
       description: Total number of items
-    totalPages:
+    total_pages:
       type: integer
       description: Total number of pages
   required:
     - page
     - limit
     - total
-    - totalPages
+    - total_pages
