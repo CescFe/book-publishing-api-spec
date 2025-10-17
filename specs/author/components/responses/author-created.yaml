@@ -1,4 +1,11 @@
 description: Author created successfully
+headers:
+  Location:
+    description: URL of the created author
+    schema:
+      type: string
+      format: uri
+      example: "/api/v1/authors/123e4567-e89b-12d3-a456-426614174000"
 content:
   application/json:
     schema:
