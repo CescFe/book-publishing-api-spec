@@ -9,4 +9,4 @@ content:
             data:
               type: array
               items:
-                $ref: '../schemas/collection.yaml'
+                $ref: '../schemas/collection-summary.yaml'
