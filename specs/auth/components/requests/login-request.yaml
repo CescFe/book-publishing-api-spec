@@ -1,0 +1,18 @@
+required: true
+content:
+  application/json:
+    schema:
+      type: object
+      required:
+        - username
+        - password
+      properties:
+        username:
+          type: string
+          description: user email
+          example: "admin@example.com"
+        password:
+          type: string
+          format: password
+          description: User password
+          example: "securePassword123"
