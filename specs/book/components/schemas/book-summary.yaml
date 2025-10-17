@@ -1,0 +1,51 @@
+type: object
+required:
+  - id
+  - title
+  - author_ids
+  - collection_id
+  - base_price
+properties:
+  id:
+    $ref: '../../../shared/components/schemas/id.yaml'
+  title:
+    type: string
+    description: Book title
+    minLength: 1
+    maxLength: 200
+    example: "The Invisible Life of Addie LaRue"
+  author_ids:
+    type: array
+    items:
+      type: string
+      format: uuid
+    description: "IDs Array of Authors"
+    minItems: 1
+    example: ["da420b0a-64aa-470d-991e-7fcb7a936229"]
+  collection_id:
+    type: string
+    format: uuid
+    description: "Collection ID"
+    example: "da420b0a-64aa-470d-991e-7fcb7a936229"
+  base_price:
+    type: number
+    format: double
+    minimum: 0
+    multipleOf: 0.01
+    description: "Base price in euros"
+    example: 19.95
+  final_price:
+    type: number
+    format: double
+    readOnly: true
+    description: "Final price including VAT"
+    example: 20.748
+  isbn:
+    type: string
+    pattern: '^(978|979)\d{10}$'
+    description: "ISBN-13 identifier"
+    example: "9780547928227"
+  status:
+    $ref: './enums/status.yaml'
+  version:
+    $ref: '../../../shared/components/schemas/version.yaml'

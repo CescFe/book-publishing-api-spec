@@ -9,4 +9,4 @@ content:
             data:
               type: array
               items:
-                $ref: '../schemas/author.yaml'
+                $ref: '../schemas/author-summary.yaml'

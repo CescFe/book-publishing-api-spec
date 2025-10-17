@@ -1,0 +1,24 @@
+type: object
+required:
+  - id
+  - name
+properties:
+  id:
+    $ref: '../../../shared/components/schemas/id.yaml'
+  name:
+    type: string
+    description: Collection name
+    minLength: 1
+    maxLength: 80
+    example: "Fantasy Classics"
+  reading_level:
+    $ref: '../../../shared/components/schemas/enums/reading-level.yaml'
+    example: "ADULT"
+  primary_language:
+    $ref: '../../../shared/components/schemas/enums/language.yaml'
+    example: "ENGLISH"
+  primary_genre:
+    $ref: '../../../shared/components/schemas/enums/genre.yaml'
+    example: "FANTASY"
+  version:
+    $ref: '../../../shared/components/schemas/version.yaml'

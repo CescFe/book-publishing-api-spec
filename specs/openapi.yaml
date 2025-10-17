@@ -328,11 +328,17 @@ paths:
 
 components:
   schemas:
-    Collection:
-      $ref: './collection/components/schemas/collection.yaml'
     Author:
       $ref: './author/components/schemas/author.yaml'
+    AuthorSummary:
+      $ref: './author/components/schemas/author-summary.yaml'
     Book:
       $ref: './book/components/schemas/book.yaml'
+    BookSummary:
+      $ref: './book/components/schemas/book-summary.yaml'
+    Collection:
+      $ref: './collection/components/schemas/collection.yaml'
+    CollectionSummary:
+      $ref: './collection/components/schemas/collection-summary.yaml'
 
 
