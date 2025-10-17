@@ -1,0 +1,11 @@
+description: Invalid credentials
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+    example:
+      error: "Invalid credentials"

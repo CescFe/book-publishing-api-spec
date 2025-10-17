@@ -1,0 +1,26 @@
+description: Login successful
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        access_token:
+          type: string
+          description: JWT access token
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+        token_type:
+          type: string
+          enum: ["Bearer"]
+          example: "Bearer"
+        expires_in:
+          type: integer
+          description: Token expiration time in seconds
+          example: 86400
+        scope:
+          type: string
+          description: Granted permissions
+          example: "read write delete"
+        user_id:
+          type: string
+          description: ID of the authenticated user
+          example: "da420b0a-64aa-470d-991e-7fcb7a936229"
