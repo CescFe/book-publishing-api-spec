@@ -1,0 +1,4 @@
+type: string
+readOnly: true
+description: Identifier of the user/system who last updated the record
+example: "system"
