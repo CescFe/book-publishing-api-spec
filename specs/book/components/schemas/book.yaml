@@ -109,5 +109,9 @@ properties:
     $ref: '../../../shared/components/schemas/version.yaml'
   created_at:
     $ref: '../../../shared/components/schemas/created-at.yaml'
+  created_by:
+    $ref: '../../../shared/components/schemas/created-by.yaml'
   updated_at:
     $ref: '../../../shared/components/schemas/updated-at.yaml'
+  updated_by:
+    $ref: '../../../shared/components/schemas/updated-by.yaml'
