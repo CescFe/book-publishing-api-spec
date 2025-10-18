@@ -1,0 +1,36 @@
+type: object
+required:
+  - name
+  - version
+properties:
+  name:
+    type: string
+    description: Collection name
+    minLength: 1
+    maxLength: 80
+    example: "Fantasy Classics"
+  reading_level:
+    $ref: '../../../shared/components/schemas/enums/reading-level.yaml'
+    example: "ADULT"
+  primary_language:
+    $ref: '../../../shared/components/schemas/enums/language.yaml'
+    example: "ENGLISH"
+  secondary_languages:
+    type: array
+    items:
+      $ref: '../../../shared/components/schemas/enums/language.yaml'
+    maxItems: 3
+    description: Secondary languages associated with the collection
+    example: ["CATALAN", "SPANISH"]
+  primary_genre:
+    $ref: '../../../shared/components/schemas/enums/genre.yaml'
+    example: "FANTASY"
+  secondary_genres:
+    type: array
+    items:
+      $ref: '../../../shared/components/schemas/enums/genre.yaml'
+    maxItems: 3
+    description: Secondary genres associated with the collection
+    example: ["ADVENTURE", "HISTORICAL_FICTION"]
+  version:
+    $ref: '../../../shared/components/schemas/version.yaml'

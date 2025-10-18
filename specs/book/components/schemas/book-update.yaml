@@ -1,0 +1,108 @@
+type: object
+required:
+  - title
+  - author_ids
+  - collection_id
+  - base_price
+  - version
+properties:
+  title:
+    type: string
+    description: Book title
+    minLength: 1
+    maxLength: 200
+    example: "The Invisible Life of Addie LaRue"
+  author_ids:
+    type: array
+    items:
+      type: string
+      format: uuid
+    description: "IDs Array of Authors"
+    minItems: 1
+    example: ["da420b0a-64aa-470d-991e-7fcb7a936229"]
+  illustrator_ids:
+    type: array
+    items:
+      type: string
+      format: uuid
+    description: "IDs Array of Illustrators"
+    example: ["da420b0a-64aa-470d-991e-7fcb7a936229"]
+  collection_id:
+    type: string
+    format: uuid
+    description: "Collection ID"
+    example: "da420b0a-64aa-470d-991e-7fcb7a936229"
+  reading_level:
+    $ref: '../../../shared/components/schemas/enums/reading-level.yaml'
+    example: "ADULT"
+  primary_language:
+    $ref: '../../../shared/components/schemas/enums/language.yaml'
+    example: "ENGLISH"
+  secondary_languages:
+    type: array
+    items:
+      $ref: '../../../shared/components/schemas/enums/language.yaml'
+    maxItems: 3
+    description: Secondary languages associated with the collection
+    example: [ "CATALAN", "SPANISH" ]
+  primary_genre:
+    $ref: '../../../shared/components/schemas/enums/genre.yaml'
+    example: "FANTASY"
+  secondary_genres:
+    type: array
+    items:
+      $ref: '../../../shared/components/schemas/enums/genre.yaml'
+    maxItems: 3
+    description: Secondary genres associated with the collection
+    example: ["ADVENTURE", "HISTORICAL_FICTION"]
+  base_price:
+    type: number
+    format: double
+    minimum: 0
+    multipleOf: 0.01
+    description: "Base price in euros"
+    example: 19.95
+  vat_rate:
+    type: number
+    format: double
+    maximum: 1
+    minimum: 0
+    multipleOf: 0.01
+    default: 0.04
+    description: "VAT rate (0.04 = 4%)"
+    example: 0.04
+  final_price:
+    type: number
+    format: double
+    readOnly: true
+    description: "Final price including VAT"
+    example: 20.748
+  isbn:
+    type: string
+    pattern: '^(978|979)\d{10}$'
+    description: "ISBN-13 identifier"
+    example: "9780547928227"
+  publication_date:
+    type: string
+    format: date
+    description: "Publication date"
+    example: "2020-10-06"
+  page_count:
+    type: integer
+    minimum: 1
+    description: "Number of pages"
+    example: 448
+  cover_image_url:
+    type: string
+    format: uri
+    description: "URL to book cover image"
+    example: "https://example.com/covers/addie-larue.jpg"
+  description:
+    type: string
+    maxLength: 2000
+    description: "Book description/synopsis"
+    example: "A Life No One Will Remember. A Story You Will Never Forget."
+  status:
+    $ref: './enums/status.yaml'
+  version:
+    $ref: '../../../shared/components/schemas/version.yaml'

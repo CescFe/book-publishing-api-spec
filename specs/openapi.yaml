@@ -1,7 +1,7 @@
 openapi: 3.1.2
 info:
   title: Book Publishing API
-  version: 0.2.0
+  version: 0.2.1
   description: |-
     API for managing books, authors, and collections in a publishing system.
     This API provides CRUD operations for books, collections and authors with role-based differentiation.
@@ -26,7 +26,7 @@ paths:
       summary: Login user
       description: Create an access token for the authenticated user
       security:
-        - bearerAuth: []
+        - bearerAuth: [ ]
       requestBody:
         $ref: './auth/components/requests/login-request.yaml'
       responses:
@@ -42,7 +42,7 @@ paths:
       summary: Logout user
       description: Invalidate the current access token
       security:
-        - bearerAuth: []
+        - bearerAuth: [ ]
       responses:
         '204':
           description: User logged out successfully
@@ -332,13 +332,19 @@ components:
       $ref: './author/components/schemas/author.yaml'
     AuthorSummary:
       $ref: './author/components/schemas/author-summary.yaml'
+    AuthorUpdate:
+      $ref: './author/components/schemas/author-update.yaml'
     Book:
       $ref: './book/components/schemas/book.yaml'
     BookSummary:
       $ref: './book/components/schemas/book-summary.yaml'
+    BookUpdate:
+      $ref: './book/components/schemas/book-update.yaml'
     Collection:
       $ref: './collection/components/schemas/collection.yaml'
     CollectionSummary:
       $ref: './collection/components/schemas/collection-summary.yaml'
+    CollectionUpdate:
+      $ref: './collection/components/schemas/collection-update.yaml'
 
 
