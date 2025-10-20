@@ -31,5 +31,3 @@ properties:
     format: email
     description: Author's contact email
     example: "tolkien@example.com"
-  version:
-    $ref: '../../../shared/components/schemas/version.yaml'

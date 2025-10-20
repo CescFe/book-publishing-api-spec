@@ -33,8 +33,6 @@ properties:
     maxItems: 3
     description: Secondary genres associated with the collection
     example: ["ADVENTURE", "HISTORICAL_FICTION"]
-  version:
-    $ref: '../../../shared/components/schemas/version.yaml'
   created_at:
     $ref: '../../../shared/components/schemas/created-at.yaml'
   created_by:

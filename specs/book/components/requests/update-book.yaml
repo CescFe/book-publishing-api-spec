@@ -3,4 +3,4 @@ required: true
 content:
   application/json:
     schema:
-      $ref: '../schemas/book-update.yaml'
+      $ref: '../schemas/book.yaml'
