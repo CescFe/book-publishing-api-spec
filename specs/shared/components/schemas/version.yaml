@@ -1,5 +1,0 @@
-type: integer
-format: int64
-readOnly: true
-description: Version number for optimistic locking
-example: 1

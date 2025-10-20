@@ -105,8 +105,6 @@ properties:
     example: "A Life No One Will Remember. A Story You Will Never Forget."
   status:
     $ref: './enums/status.yaml'
-  version:
-    $ref: '../../../shared/components/schemas/version.yaml'
   created_at:
     $ref: '../../../shared/components/schemas/created-at.yaml'
   created_by:

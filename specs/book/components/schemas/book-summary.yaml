@@ -47,5 +47,3 @@ properties:
     example: "9780547928227"
   status:
     $ref: './enums/status.yaml'
-  version:
-    $ref: '../../../shared/components/schemas/version.yaml'
