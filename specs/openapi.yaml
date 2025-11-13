@@ -1,7 +1,7 @@
 openapi: 3.1.2
 info:
   title: Book Publishing API
-  version: 0.2.2
+  version: 0.2.3
   description: |-
     API for managing books, authors, and collections in a publishing system.
     This API provides CRUD operations for books, collections and authors with role-based differentiation.
@@ -34,24 +34,8 @@ paths:
           $ref: './auth/components/responses/login-response.yaml'
         '401':
           $ref: './shared/components/responses/errors/unauthorized.yaml'
-  /api/v1/auth/logout:
-    post:
-      tags:
-        - Logout
-      operationId: logout
-      summary: Logout user
-      description: Invalidate the current access token
-      security:
-        - bearerAuth: [ ]
-      responses:
-        '204':
-          description: User logged out successfully
-        '401':
-          description: Invalid or expired token
-          content:
-            application/json:
-              schema:
-                $ref: './shared/components/responses/errors/unauthorized.yaml'
+        '500':
+          $ref: './shared/components/responses/errors/internal-error.yaml'
 
   # authors
   /api/v1/authors:
