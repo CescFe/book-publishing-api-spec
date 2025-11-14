@@ -1,8 +1,8 @@
 # Book Publishing API Specification
 
+[![Maven Package](https://img.shields.io/badge/maven-org.cescfe/book--publishing--api--spec-blue)](https://maven.pkg.github.com/CescFe/book-publishing-api-spec)
 [![GitHub release](https://img.shields.io/github/v/release/CescFe/book-publishing-api-spec?color=blue)](https://github.com/CescFe/book-publishing-api-spec/releases/latest)
 [![GitHub license](https://img.shields.io/github/license/CescFe/book-publishing-api-spec?color=blue)](https://github.com/CescFe/book-publishing-api-spec/blob/main/LICENSE)
-[![Maven Package](https://img.shields.io/badge/maven-org.cescfe%3Abook--publishing--api--spec-blue)](https://maven.pkg.github.com/CescFe/book-publishing-api-spec)
 
 API specification for a Book Publishing system with automatic Kotlin Spring code generation.
 

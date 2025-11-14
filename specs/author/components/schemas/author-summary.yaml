@@ -2,7 +2,6 @@ type: object
 required:
   - id
   - full_name
-  - roles
 properties:
   id:
     $ref: '../../../shared/components/schemas/id.yaml'
@@ -18,14 +17,6 @@ properties:
     minLength: 1
     maxLength: 255
     example: "J.R.R. Tolkien"
-  roles:
-    type: array
-    items:
-      $ref: '../../../shared/components/schemas/enums/role.yaml'
-    contains:
-      const: AUTHOR
-    description: Must contain at least AUTHOR role
-    example: ["AUTHOR"]
   email:
     type: string
     format: email
