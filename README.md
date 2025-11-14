@@ -1,5 +1,9 @@
 # Book Publishing API Specification
 
+[![GitHub release](https://img.shields.io/github/v/release/CescFe/book-publishing-api-spec?color=blue)](https://github.com/CescFe/book-publishing-api-spec/releases/latest)
+[![GitHub license](https://img.shields.io/github/license/CescFe/book-publishing-api-spec?color=blue)](https://github.com/CescFe/book-publishing-api-spec/blob/main/LICENSE)
+[![Maven Package](https://img.shields.io/badge/maven-org.cescfe%3Abook--publishing--api--spec-blue)](https://maven.pkg.github.com/CescFe/book-publishing-api-spec)
+
 API specification for a Book Publishing system with automatic Kotlin Spring code generation.
 
 ## Overview
@@ -9,12 +13,17 @@ This repository contains the OpenAPI 3.1.2 specification for a Book Publishing A
 ## Features
 
 - ✅ **OpenAPI 3.1.2** specification with comprehensive CRUD operations
+- ✅ **Authentication & Authorization** with Bearer token support
 - ✅ **Automatic validation** on every pull request
 - ✅ **Kotlin Spring code generation** with Jackson serialization
 - ✅ **GitHub Packages publishing** for dependency consumption
 - ✅ **Automated release workflow** with tag creation and package publishing
+- ✅ **Audit fields** (created_at, created_by, updated_at, updated_by)
 
 ## API Endpoints
+
+### Authentication
+- `POST /api/v1/auth/login` - Authenticate user and get access token
 
 ### Authors
 - `GET /api/v1/authors` - Get all authors (paginated)
@@ -42,7 +51,6 @@ This repository contains the OpenAPI 3.1.2 specification for a Book Publishing A
 ### Prerequisites
 
 - Java 21 or higher
-- Gradle 8.5 or higher
 
 ### Validation
 
@@ -61,9 +69,10 @@ This repository contains the OpenAPI 3.1.2 specification for a Book Publishing A
 
 The generated code includes:
 - **DTOs**: Kotlin data classes for all schemas
-- **API Interfaces**: Spring Boot 3 compatible interfaces with `@RequestMapping` annotations
+- **API Interfaces**: Spring Boot 3 compatible interfaces for all endpoints
 - **Jackson Serialization**: Configured for JSON serialization/deserialization
 - **Bean Validation**: Jakarta validation annotations
+- **Security**: Bearer token authentication support
 
 Generated files are placed in `build/generated-sources/openapi/`.
 
@@ -77,7 +86,7 @@ Every pull request automatically runs:
 
 ### Release Process
 
-The release process is manual and consists of two steps:
+The release process is partially automated and consists of these steps:
 
 #### 1. Create Tag
 
@@ -101,7 +110,8 @@ The release process is manual and consists of two steps:
 
 ### In your Spring Boot project
 
-Add to your `build.gradle.kts`:
+1. Configure the TOKEN environment variable with a GitHub Personal Access Token that has `read:packages` scope.
+2. Add to your `build.gradle.kts`:
 
 ```kotlin
 repositories {
