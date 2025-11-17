@@ -1,7 +1,7 @@
 openapi: 3.1.2
 info:
   title: Book Publishing API
-  version: 0.3.0
+  version: 0.3.1
   description: |-
     API for managing books, authors, and collections in a publishing system.
     This API provides CRUD operations for books, collections and authors with role-based differentiation.
