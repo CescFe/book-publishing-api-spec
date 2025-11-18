@@ -1,7 +1,7 @@
 type: object
 required:
   - title
-  - author_ids
+  - author_id
   - collection_id
   - base_price
 properties:
@@ -13,20 +13,10 @@ properties:
     minLength: 1
     maxLength: 200
     example: "The Invisible Life of Addie LaRue"
-  author_ids:
-    type: array
-    items:
-      type: string
-      format: uuid
-    description: "IDs Array of Authors"
-    minItems: 1
-    example: ["da420b0a-64aa-470d-991e-7fcb7a936229"]
-  illustrator_ids:
-    type: array
-    items:
-      type: string
-      format: uuid
-    description: "IDs Array of Illustrators"
+  author_id:
+    type: string
+    format: uuid
+    description: "Author ID"
     example: ["da420b0a-64aa-470d-991e-7fcb7a936229"]
   collection_id:
     type: string
@@ -77,7 +67,7 @@ properties:
     format: double
     readOnly: true
     description: "Final price including VAT"
-    example: 20.748
+    example: 20.75
   isbn:
     type: string
     pattern: '^(978|979)\d{10}$'
