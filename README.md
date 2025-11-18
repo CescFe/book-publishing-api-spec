@@ -102,9 +102,9 @@ The release process is partially automated and consists of these steps:
 
 #### 3. Publish Package
 
-1. Go to **Actions** → **Publish Package**
-2. Run manually with the version (e.g., `0.1.0`)
-3. This publishes the JAR to GitHub Packages
+1. Generate a GitHub Personal Access Token (PAT) with the `write:packages` scope and configure the GH secret
+2. Go to **Actions** → **Publish Package**
+3. Run manually with the version (e.g., `0.1.0`)
 
 ## Consuming the Generated Code
 
