@@ -3,4 +3,4 @@ required: true
 content:
   application/json:
     schema:
-      $ref: '../schemas/collection.yaml'
+      $ref: '../schemas/collection-create-request.yaml'
