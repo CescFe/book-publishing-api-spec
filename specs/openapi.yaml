@@ -1,7 +1,7 @@
 openapi: 3.1.2
 info:
   title: Book Publishing API
-  version: 0.3.3
+  version: 1.0.0
   description: |-
     API for managing books, authors, and collections in a publishing system.
     This API provides CRUD operations for books, collections and authors secured with jwt.
@@ -17,7 +17,6 @@ servers:
     description: local server
 
 paths:
-  # auth
   /api/v1/auth/login:
     post:
       tags:
@@ -37,7 +36,6 @@ paths:
         '500':
           $ref: './shared/components/responses/errors/internal-error.yaml'
 
-  # authors
   /api/v1/authors:
     get:
       tags:
@@ -63,7 +61,12 @@ paths:
       summary: Create a new author
       description: Create a new author with the provided information
       requestBody:
-        $ref: './author/components/requests/create-author.yaml'
+        description: Author creation request body
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './author/components/schemas/author-request.yaml'
       responses:
         '201':
           $ref: './author/components/responses/author-created.yaml'
@@ -84,7 +87,11 @@ paths:
         - $ref: './shared/components/parameters/uuid-path.yaml'
       responses:
         '200':
-          $ref: './author/components/responses/author-detail.yaml'
+          description: Author details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: './author/components/schemas/author-response.yaml'
         '404':
           $ref: './shared/components/responses/errors/not-found.yaml'
         '500':
@@ -98,10 +105,19 @@ paths:
       parameters:
         - $ref: './shared/components/parameters/uuid-path.yaml'
       requestBody:
-        $ref: './author/components/requests/update-author.yaml'
+        description: Author updated request body
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './author/components/schemas/author-request.yaml'
       responses:
         '200':
-          $ref: './author/components/responses/author-updated.yaml'
+          description: Author updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: './author/components/schemas/author-response.yaml'
         '400':
           $ref: './shared/components/responses/errors/bad-request.yaml'
         '404':
@@ -120,7 +136,7 @@ paths:
         - $ref: './shared/components/parameters/uuid-path.yaml'
       responses:
         '204':
-          $ref: './author/components/responses/author-deleted.yaml'
+          description: Author deleted successfully
         '404':
           $ref: './shared/components/responses/errors/not-found.yaml'
         '409':
@@ -128,7 +144,6 @@ paths:
         '500':
           $ref: './shared/components/responses/errors/internal-error.yaml'
 
-  # books
   /api/v1/books:
     get:
       tags:
@@ -211,7 +226,7 @@ paths:
         - $ref: './shared/components/parameters/uuid-path.yaml'
       responses:
         '204':
-          $ref: './book/components/responses/book-deleted.yaml'
+          description: Book deleted successfully
         '404':
           $ref: './shared/components/responses/errors/not-found.yaml'
         '409':
@@ -219,7 +234,6 @@ paths:
         '500':
           $ref: './shared/components/responses/errors/internal-error.yaml'
 
-  # collections
   /api/v1/collections:
     get:
       tags:
