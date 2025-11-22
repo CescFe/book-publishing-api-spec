@@ -259,7 +259,12 @@ paths:
       summary: Create a new collection
       description: Create a new collection with the provided information
       requestBody:
-        $ref: './collection/components/requests/create-collection.yaml'
+        description: Collection creation request body
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './collection/components/schemas/collection-request.yaml'
       responses:
         '201':
           $ref: './collection/components/responses/collection-created.yaml'
@@ -298,7 +303,12 @@ paths:
       parameters:
         - $ref: './shared/components/parameters/uuid-path.yaml'
       requestBody:
-        $ref: './collection/components/requests/update-collection.yaml'
+        description: Collection updated request body
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './collection/components/schemas/collection-request.yaml'
       responses:
         '200':
           description: Collection updated successfully
