@@ -1,5 +1,0 @@
-description: Book updated successfully
-content:
-  application/json:
-    schema:
-      $ref: '../schemas/book.yaml'

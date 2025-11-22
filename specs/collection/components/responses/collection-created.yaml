@@ -9,4 +9,4 @@ headers:
 content:
   application/json:
     schema:
-      $ref: '../schemas/collection.yaml'
+      $ref: '../schemas/collection-response.yaml'

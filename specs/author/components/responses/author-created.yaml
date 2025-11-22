@@ -9,4 +9,4 @@ headers:
 content:
   application/json:
     schema:
-      $ref: '../schemas/author.yaml'
+      $ref: '../schemas/author-response.yaml'
