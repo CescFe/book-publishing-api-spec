@@ -326,5 +326,5 @@ components:
       $ref: './collection/components/schemas/collection-summary.yaml'
     CollectionResponse:
       $ref: './collection/components/schemas/collection-response.yaml'
-    CollectionCreateRequest:
-      $ref: './collection/components/schemas/collection-create-request.yaml'
+    CollectionRequest:
+      $ref: './collection/components/schemas/collection-request.yaml'
