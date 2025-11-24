@@ -83,11 +83,11 @@ properties:
     minimum: 1
     description: "Number of pages"
     example: 448
-  cover_image_url:
+  cover_image_path:
     type: string
-    format: uri
-    description: "URL to book cover image"
-    example: "https://example.com/covers/addie-larue.jpg"
+    maxLength: 255
+    description: "Path to book cover image"
+    example: "./covers/addie-larue.jpg"
   description:
     type: string
     maxLength: 2000
