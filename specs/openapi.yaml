@@ -1,7 +1,7 @@
 openapi: 3.1.2
 info:
   title: Book Publishing API
-  version: 1.0.0
+  version: 1.0.1
   description: |-
     API for managing books, authors, and collections in a publishing system.
     This API provides CRUD operations for books, collections and authors secured with jwt.
@@ -164,8 +164,8 @@ paths:
           $ref: './shared/components/responses/errors/internal-error.yaml'
     post:
       tags:
-        - CreateBooks
-      operationId: createBooks
+        - CreateBook
+      operationId: createBook
       summary: Create a new book
       description: Create a new book with the provided information
       requestBody:
