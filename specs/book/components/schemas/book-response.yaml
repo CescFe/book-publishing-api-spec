@@ -13,9 +13,9 @@ properties:
     minLength: 1
     maxLength: 200
     example: "The Invisible Life of Addie LaRue"
-  author_id:
+  author:
     $ref: './refs/author-ref.yaml'
-  collection_id:
+  collection:
     $ref: './refs/collection-ref.yaml'
   reading_level:
     $ref: '../../../shared/components/schemas/enums/reading-level.yaml'
