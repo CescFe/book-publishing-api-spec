@@ -1,0 +1,13 @@
+type: object
+required:
+  - id
+  - name
+properties:
+  id:
+    $ref: '../../../../shared/components/schemas/id.yaml'
+  name:
+    type: string
+    description: Collection name
+    minLength: 1
+    maxLength: 80
+    example: "Fantasy Classics"
