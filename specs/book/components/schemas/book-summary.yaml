@@ -16,7 +16,7 @@ properties:
     example: "The Invisible Life of Addie LaRue"
   author:
     $ref: './refs/author-ref.yaml'
-  collection_id:
+  collection:
     $ref: './refs/collection-ref.yaml'
   base_price:
     type: number
