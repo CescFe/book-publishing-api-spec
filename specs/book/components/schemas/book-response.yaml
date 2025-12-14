@@ -13,16 +13,10 @@ properties:
     minLength: 1
     maxLength: 200
     example: "The Invisible Life of Addie LaRue"
-  author_id:
-    type: string
-    format: uuid
-    description: "Author ID"
-    example: ["da420b0a-64aa-470d-991e-7fcb7a936229"]
-  collection_id:
-    type: string
-    format: uuid
-    description: "Collection ID"
-    example: "da420b0a-64aa-470d-991e-7fcb7a936229"
+  author:
+    $ref: './refs/author-ref.yaml'
+  collection:
+    $ref: './refs/collection-ref.yaml'
   reading_level:
     $ref: '../../../shared/components/schemas/enums/reading-level.yaml'
     example: "ADULT"
