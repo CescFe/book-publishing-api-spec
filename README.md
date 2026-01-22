@@ -1,6 +1,5 @@
 # Book Publishing API Specification
 
-[![Maven Package](https://img.shields.io/badge/maven-org.cescfe:book--publishing--api--spec-blue)](https://maven.pkg.github.com/CescFe/book-publishing-api-spec)
 [![GitHub release](https://img.shields.io/github/v/release/CescFe/book-publishing-api-spec?color=blue)](https://github.com/CescFe/book-publishing-api-spec/releases/latest)
 [![GitHub license](https://img.shields.io/github/license/CescFe/book-publishing-api-spec?color=blue)](https://github.com/CescFe/book-publishing-api-spec/blob/main/LICENSE)
 
@@ -16,7 +15,7 @@ This repository contains the OpenAPI 3.1.2 specification for a Book Publishing A
 - ✅ **Authentication & Authorization** with Bearer token support
 - ✅ **Automatic validation** on every pull request
 - ✅ **Kotlin Spring code generation** with Jackson serialization
-- ✅ **GitHub Packages publishing** for dependency consumption
+- ✅ **Artifact Registry publishing** for dependency consumption
 - ✅ **Automated release workflow** with tag creation and package publishing
 - ✅ **Audit fields** (created_at, created_by, updated_at, updated_by)
 
@@ -102,32 +101,32 @@ The release process is partially automated and consists of these steps:
 
 #### 3. Publish Package
 
-1. Generate a GitHub Personal Access Token (PAT) with the `write:packages` scope and configure the GH secret
-2. Go to **Actions** → **Publish Package**
-3. Run manually with the version (e.g., `0.1.0`)
+1. Go to **Actions** → **Publish Package**
+2. Run manually with the version (e.g., `0.1.0`)
+3. The package is published to Google Artifact Registry
+
+##### Manual Publishing
+```bash
+./gradlew publish
+```
 
 ## Consuming the Generated Code
 
 ### In your Spring Boot project
 
-1. Configure the TOKEN environment variable with a GitHub Personal Access Token that has `read:packages` scope.
-2. Add to your `build.gradle.kts`:
+Add to your `build.gradle.kts`:
 
 ```kotlin
 repositories {
     mavenCentral()
     maven {
-        name = "GitHubPackages"
-        url = uri("https://maven.pkg.github.com/CescFe/book-publishing-api-spec")
-        credentials {
-            username = System.getenv("USERNAME")
-            password = System.getenv("TOKEN")
-        }
+        name = "ArtifactRegistry"
+        url = uri("artifactregistry://my_uri")
     }
 }
 
 dependencies {
-    implementation("org.cescfe:book-publishing-api-spec:0.1.0")
+    implementation("org.cescfe:book-publishing-api-spec:0.1.0") // or the desired version
 }
 ```
 
@@ -136,4 +135,4 @@ dependencies {
 - **Group**: `org.cescfe`
 - **Artifact**: `book-publishing-api-spec`
 - **Version**: `0.1.0` (or latest)
-- **Repository**: `https://maven.pkg.github.com/CescFe/book-publishing-api-spec`
+- **Repository**: Google Artifact Registry

@@ -6,14 +6,14 @@ plugins {
     kotlin("plugin.spring") version "2.1.21"
     id("org.openapi.generator") version "7.15.0"
     `maven-publish`
+    id("com.google.cloud.artifactregistry.gradle-plugin") version "2.2.0"
 }
 
 group = "org.cescfe"
-version = "1.1.0"
+version = "1.2.0"
 
 val developer = "FrancescFe"
 val repositoryUrl = "https://github.com/CescFe/book-publishing-api-spec"
-val packageUrl = "https://maven.pkg.github.com/CescFe/book-publishing-api-spec"
 
 val generatedDir: String =
     layout.buildDirectory
@@ -127,12 +127,7 @@ publishing {
 
     repositories {
         maven {
-            name = "GitHubPackages"
-            url = uri(packageUrl)
-            credentials {
-                username = System.getenv("USERNAME")
-                password = System.getenv("TOKEN")
-            }
+            url = uri("artifactregistry://europe-west1-maven.pkg.dev/book-publishing-backend/maven-repo")
         }
     }
 }
