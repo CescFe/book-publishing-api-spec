@@ -1,0 +1,53 @@
+name: Validate API Build & OpenAPI
+
+on:
+  pull_request:
+    branches: [main]
+    types: [ opened, synchronize, reopened, ready_for_review ]
+    paths:
+      - 'specs/**/*.yaml'
+      - 'specs/**/*.yml'
+      - 'build.gradle.kts'
+  push:
+    branches: [main]
+    paths:
+      - 'specs/**/*.yaml'
+      - 'specs/**/*.yml'
+      - 'build.gradle.kts'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    if: |
+      github.event_name == 'push' ||
+      (github.event_name == 'pull_request' && github.event.pull_request.draft == false)
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'corretto'
+          cache: gradle
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+        with:
+          gradle-version: wrapper
+          cache-read-only: false
+
+      - name: Validate OpenAPI spec
+        run: ./gradlew openApiValidate
+
+      - name: Generate OpenAPI code
+        run: ./gradlew openApiGenerate
+
+      - name: Build project
+        run: ./gradlew build --no-daemon --warning-mode all
