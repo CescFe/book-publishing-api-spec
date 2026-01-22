@@ -1,7 +1,7 @@
 ---
 name: 💡 Feature Request
 about: Implement a new feature or enhancement for the repository
-title: '[FEAT] '
+title: '[API] '
 labels: feat
 assignees: FrancescFe
 ---

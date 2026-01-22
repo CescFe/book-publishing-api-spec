@@ -1,4 +1,4 @@
-name: Publish Package
+name: Publish Package to Artifact Registry
 
 on:
   workflow_dispatch:
@@ -6,16 +6,19 @@ on:
       version:
         description: "Package version to publish (e.g., 0.1.0)"
         required: true
-        default: "0.1.0"
+        default: "1.2.0"
+
+permissions:
+  contents: read
+  id-token: write
 
 jobs:
   publish-package:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Java
         uses: actions/setup-java@v4
@@ -23,10 +26,19 @@ jobs:
           java-version: '21'
           distribution: 'corretto'
 
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: projects/867321761184/locations/global/workloadIdentityPools/github-pool/providers/github
+          service_account: github-actions@book-publishing-backend.iam.gserviceaccount.com
+
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
         with:
           gradle-version: wrapper
+
+      - name: Set version property
+        run: echo "version=${{ github.event.inputs.version }}" >> gradle.properties
 
       - name: Generate code
         run: ./gradlew openApiGenerate
@@ -34,11 +46,8 @@ jobs:
       - name: Build JAR
         run: ./gradlew build
 
-      - name: Publish to GitHub Packages
+      - name: Publish to Artifact Registry
         run: ./gradlew publish
-        env:
-          USERNAME: ${{ github.actor }}
-          TOKEN: ${{ secrets.TOKEN_PAT }}
 
       - name: Verify package publication
         run: |
