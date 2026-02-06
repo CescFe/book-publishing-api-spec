@@ -66,7 +66,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: './author/components/schemas/author-request.yaml'
+              $ref: './author/components/schemas/author-create-request.yaml#/CreateAuthorRequest'
       responses:
         '201':
           $ref: './author/components/responses/author-created.yaml'
@@ -87,11 +87,7 @@ paths:
         - $ref: './shared/components/parameters/uuid-path.yaml'
       responses:
         '200':
-          description: Author details retrieved successfully
-          content:
-            application/json:
-              schema:
-                $ref: './author/components/schemas/author-response.yaml'
+          $ref: './author/components/responses/author-retrieved.yaml'
         '404':
           $ref: './shared/components/responses/errors/not-found.yaml'
         '500':
@@ -110,14 +106,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: './author/components/schemas/author-request.yaml'
+              $ref: './author/components/schemas/author-update-request.yaml#/UpdateAuthorRequest'
       responses:
         '200':
-          description: Author updated successfully
-          content:
-            application/json:
-              schema:
-                $ref: './author/components/schemas/author-response.yaml'
+          $ref: './author/components/responses/author-updated.yaml'
         '400':
           $ref: './shared/components/responses/errors/bad-request.yaml'
         '404':
