@@ -274,7 +274,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: './collection/components/schemas/collection-request.yaml'
+              $ref: './collection/components/schemas/collection-create-request.yaml#/CreateCollectionRequest'
       responses:
         '201':
           $ref: './collection/components/responses/collection-created.yaml'
@@ -295,11 +295,7 @@ paths:
         - $ref: './shared/components/parameters/uuid-path.yaml'
       responses:
         '200':
-          description: Collection details retrieved successfully
-          content:
-            application/json:
-              schema:
-                $ref: './collection/components/schemas/collection-response.yaml'
+          $ref: './collection/components/responses/collection-retrieved.yaml'
         '404':
           $ref: './shared/components/responses/errors/not-found.yaml'
         '500':
@@ -318,14 +314,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: './collection/components/schemas/collection-request.yaml'
+              $ref: './collection/components/schemas/collection-update-request.yaml#/UpdateCollectionRequest'
       responses:
         '200':
-          description: Collection updated successfully
-          content:
-            application/json:
-              schema:
-                $ref: './collection/components/schemas/collection-response.yaml'
+          $ref: './collection/components/responses/collection-updated.yaml'
         '400':
           $ref: './shared/components/responses/errors/bad-request.yaml'
         '404':
