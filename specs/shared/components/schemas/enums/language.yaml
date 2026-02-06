@@ -1,7 +1,8 @@
-type: string
-enum:
-  - CATALAN
-  - VALENCIAN
-  - SPANISH
-  - ENGLISH
-description: Literary language classification
+Language:
+  type: string
+  enum:
+    - CATALAN
+    - VALENCIAN
+    - SPANISH
+    - ENGLISH
+  description: Literary language classification

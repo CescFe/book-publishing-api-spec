@@ -1,6 +1,7 @@
-type: string
-enum:
-  - CHILDREN
-  - YOUNG_ADULT
-  - ADULT
-description: Reading level classification
+ReadingLevel:
+  type: string
+  enum:
+    - CHILDREN
+    - YOUNG_ADULT
+    - ADULT
+  description: Reading level classification

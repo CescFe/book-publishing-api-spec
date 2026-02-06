@@ -1,8 +1,9 @@
-type: string
-enum:
-  - DRAFT
-  - PUBLISHED
-  - OUT_OF_PRINT
-  - DISCONTINUED
-description: Publication status
-example: "PUBLISHED"
+Status:
+  type: string
+  enum:
+    - DRAFT
+    - PUBLISHED
+    - OUT_OF_PRINT
+    - DISCONTINUED
+  description: Publication status
+  example: "PUBLISHED"

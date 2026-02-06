@@ -1,4 +1,5 @@
-type: string
-readOnly: true
-description: Identifier of the user/system who created the record
-example: "system"
+CreatedBy:
+  type: string
+  readOnly: true
+  description: Identifier of the user/system who created the record
+  example: "system"

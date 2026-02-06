@@ -27,3 +27,12 @@ search:
     type: string
     maxLength: 255
   description: Search term to filter authors by name
+
+paginate:
+  name: paginate
+  in: query
+  required: false
+  schema:
+    type: boolean
+    default: true
+  description: When false, return all authors without pagination and only include total in meta

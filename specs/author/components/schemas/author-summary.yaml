@@ -4,7 +4,7 @@ required:
   - full_name
 properties:
   id:
-    $ref: '../../../shared/components/schemas/id.yaml'
+    $ref: '../../../shared/components/schemas/id.yaml#/Id'
   full_name:
     type: string
     description: Full name of the author
