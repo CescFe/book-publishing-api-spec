@@ -15,9 +15,9 @@ properties:
     maxLength: 200
     example: "The Invisible Life of Addie LaRue"
   author:
-    $ref: './refs/author-ref.yaml'
+    $ref: './refs/author-ref.yaml#/AuthorRef'
   collection:
-    $ref: './refs/collection-ref.yaml'
+    $ref: './refs/collection-ref.yaml#/CollectionRef'
   base_price:
     type: number
     format: double

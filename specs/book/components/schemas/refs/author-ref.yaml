@@ -1,13 +1,14 @@
-type: object
-required:
-  - id
-  - name
-properties:
-  id:
-    $ref: '../../../../shared/components/schemas/id.yaml#/Id'
-  name:
-    type: string
-    description: Full name of the author
-    minLength: 1
-    maxLength: 255
-    example: "John Ronald Reuel Tolkien"
+AuthorRef:
+  type: object
+  required:
+    - id
+    - name
+  properties:
+    id:
+      $ref: '../../../../shared/components/schemas/id.yaml#/Id'
+    name:
+      type: string
+      description: Full name of the author
+      minLength: 1
+      maxLength: 255
+      example: "John Ronald Reuel Tolkien"

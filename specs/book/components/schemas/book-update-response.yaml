@@ -16,9 +16,9 @@ UpdateBookResponse:
       maxLength: 200
       example: "The Invisible Life of Addie LaRue"
     author:
-      $ref: './refs/author-ref.yaml'
+      $ref: './refs/author-ref.yaml#/AuthorRef'
     collection:
-      $ref: './refs/collection-ref.yaml'
+      $ref: './refs/collection-ref.yaml#/CollectionRef'
     reading_level:
       $ref: '../../../shared/components/schemas/enums/reading-level.yaml#/ReadingLevel'
       example: "ADULT"
