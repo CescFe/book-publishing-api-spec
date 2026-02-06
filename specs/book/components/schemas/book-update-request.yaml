@@ -24,25 +24,25 @@ UpdateBookRequest:
       description: "Collection ID"
       example: "da420b0a-64aa-470d-991e-7fcb7a936229"
     reading_level:
-      $ref: '../../../shared/components/schemas/enums/reading-level.yaml'
+      $ref: '../../../shared/components/schemas/enums/reading-level.yaml#/ReadingLevel'
       example: "ADULT"
     primary_language:
-      $ref: '../../../shared/components/schemas/enums/language.yaml'
+      $ref: '../../../shared/components/schemas/enums/language.yaml#/Language'
       example: "ENGLISH"
     secondary_languages:
       type: array
       items:
-        $ref: '../../../shared/components/schemas/enums/language.yaml'
+        $ref: '../../../shared/components/schemas/enums/language.yaml#/Language'
       maxItems: 3
       description: Secondary languages associated with the collection
       example: [ "CATALAN", "SPANISH" ]
     primary_genre:
-      $ref: '../../../shared/components/schemas/enums/genre.yaml'
+      $ref: '../../../shared/components/schemas/enums/genre.yaml#/Genre'
       example: "FANTASY"
     secondary_genres:
       type: array
       items:
-        $ref: '../../../shared/components/schemas/enums/genre.yaml'
+        $ref: '../../../shared/components/schemas/enums/genre.yaml#/Genre'
       maxItems: 3
       description: Secondary genres associated with the collection
       example: ["ADVENTURE", "HISTORICAL_FICTION"]
@@ -88,4 +88,4 @@ UpdateBookRequest:
       description: "Book description/synopsis"
       example: "A Life No One Will Remember. A Story You Will Never Forget."
     status:
-      $ref: './enums/status.yaml'
+      $ref: './enums/status.yaml#/Status'

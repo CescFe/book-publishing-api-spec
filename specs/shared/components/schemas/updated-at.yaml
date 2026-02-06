@@ -1,5 +1,6 @@
-type: string
-format: date-time
-readOnly: true
-description: Timestamp when the record was last updated
-example: "2024-01-15T10:30:00Z"
+UpdatedAt:
+  type: string
+  format: date-time
+  readOnly: true
+  description: Timestamp when the record was last updated
+  example: "2024-01-15T10:30:00Z"

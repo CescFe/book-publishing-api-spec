@@ -11,25 +11,25 @@ UpdateCollectionRequest:
       maxLength: 80
       example: "Fantasy Classics"
     reading_level:
-      $ref: '../../../shared/components/schemas/enums/reading-level.yaml'
+      $ref: '../../../shared/components/schemas/enums/reading-level.yaml#/ReadingLevel'
       example: "ADULT"
     primary_language:
-      $ref: '../../../shared/components/schemas/enums/language.yaml'
+      $ref: '../../../shared/components/schemas/enums/language.yaml#/Language'
       example: "ENGLISH"
     secondary_languages:
       type: array
       items:
-        $ref: '../../../shared/components/schemas/enums/language.yaml'
+        $ref: '../../../shared/components/schemas/enums/language.yaml#/Language'
       maxItems: 3
       description: Secondary languages associated with the collection
       example: ["CATALAN", "SPANISH"]
     primary_genre:
-      $ref: '../../../shared/components/schemas/enums/genre.yaml'
+      $ref: '../../../shared/components/schemas/enums/genre.yaml#/Genre'
       example: "FANTASY"
     secondary_genres:
       type: array
       items:
-        $ref: '../../../shared/components/schemas/enums/genre.yaml'
+        $ref: '../../../shared/components/schemas/enums/genre.yaml#/Genre'
       maxItems: 3
       description: Secondary genres associated with the collection
       example: ["ADVENTURE", "HISTORICAL_FICTION"]

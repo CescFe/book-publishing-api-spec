@@ -7,7 +7,7 @@ required:
   - base_price
 properties:
   id:
-    $ref: '../../../shared/components/schemas/id.yaml'
+    $ref: '../../../shared/components/schemas/id.yaml#/Id'
   title:
     type: string
     description: Book title
@@ -37,4 +37,4 @@ properties:
     description: "ISBN-13 identifier"
     example: "9780547928227"
   status:
-    $ref: './enums/status.yaml'
+    $ref: './enums/status.yaml#/Status'

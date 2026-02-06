@@ -4,7 +4,7 @@ required:
   - name
 properties:
   id:
-    $ref: '../../../../shared/components/schemas/id.yaml'
+    $ref: '../../../../shared/components/schemas/id.yaml#/Id'
   name:
     type: string
     description: Collection name

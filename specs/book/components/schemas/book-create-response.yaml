@@ -8,7 +8,7 @@ CreateBookResponse:
     - base_price
   properties:
     id:
-      $ref: '../../../shared/components/schemas/id.yaml'
+      $ref: '../../../shared/components/schemas/id.yaml#/Id'
     title:
       type: string
       description: Book title
@@ -20,25 +20,25 @@ CreateBookResponse:
     collection:
       $ref: './refs/collection-ref.yaml'
     reading_level:
-      $ref: '../../../shared/components/schemas/enums/reading-level.yaml'
+      $ref: '../../../shared/components/schemas/enums/reading-level.yaml#/ReadingLevel'
       example: "ADULT"
     primary_language:
-      $ref: '../../../shared/components/schemas/enums/language.yaml'
+      $ref: '../../../shared/components/schemas/enums/language.yaml#/Language'
       example: "ENGLISH"
     secondary_languages:
       type: array
       items:
-        $ref: '../../../shared/components/schemas/enums/language.yaml'
+        $ref: '../../../shared/components/schemas/enums/language.yaml#/Language'
       maxItems: 3
       description: Secondary languages associated with the collection
       example: [ "CATALAN", "SPANISH" ]
     primary_genre:
-      $ref: '../../../shared/components/schemas/enums/genre.yaml'
+      $ref: '../../../shared/components/schemas/enums/genre.yaml#/Genre'
       example: "FANTASY"
     secondary_genres:
       type: array
       items:
-        $ref: '../../../shared/components/schemas/enums/genre.yaml'
+        $ref: '../../../shared/components/schemas/enums/genre.yaml#/Genre'
       maxItems: 3
       description: Secondary genres associated with the collection
       example: ["ADVENTURE", "HISTORICAL_FICTION"]
@@ -90,12 +90,12 @@ CreateBookResponse:
       description: "Book description/synopsis"
       example: "A Life No One Will Remember. A Story You Will Never Forget."
     status:
-      $ref: './enums/status.yaml'
+      $ref: './enums/status.yaml#/Status'
     created_at:
-      $ref: '../../../shared/components/schemas/created-at.yaml'
+      $ref: '../../../shared/components/schemas/created-at.yaml#/CreatedAt'
     created_by:
-      $ref: '../../../shared/components/schemas/created-by.yaml'
+      $ref: '../../../shared/components/schemas/created-by.yaml#/CreatedBy'
     updated_at:
-      $ref: '../../../shared/components/schemas/updated-at.yaml'
+      $ref: '../../../shared/components/schemas/updated-at.yaml#/UpdatedAt'
     updated_by:
-      $ref: '../../../shared/components/schemas/updated-by.yaml'
+      $ref: '../../../shared/components/schemas/updated-by.yaml#/UpdatedBy'

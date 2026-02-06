@@ -4,7 +4,7 @@ GetAuthorResponse:
     - full_name
   properties:
     id:
-      $ref: '../../../shared/components/schemas/id.yaml'
+      $ref: '../../../shared/components/schemas/id.yaml#/Id'
     full_name:
       type: string
       description: Full name of the author
@@ -33,10 +33,10 @@ GetAuthorResponse:
       description: Author's personal or professional website
       example: "https://www.tolkiensociety.org"
     created_at:
-      $ref: '../../../shared/components/schemas/created-at.yaml'
+      $ref: '../../../shared/components/schemas/created-at.yaml#/CreatedAt'
     created_by:
-      $ref: '../../../shared/components/schemas/created-by.yaml'
+      $ref: '../../../shared/components/schemas/created-by.yaml#/CreatedBy'
     updated_at:
-      $ref: '../../../shared/components/schemas/updated-at.yaml'
+      $ref: '../../../shared/components/schemas/updated-at.yaml#/UpdatedAt'
     updated_by:
-      $ref: '../../../shared/components/schemas/updated-by.yaml'
+      $ref: '../../../shared/components/schemas/updated-by.yaml#/UpdatedBy'
