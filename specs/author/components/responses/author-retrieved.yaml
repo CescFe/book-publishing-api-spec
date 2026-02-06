@@ -1,0 +1,5 @@
+description: Author details retrieved successfully
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/author-get-response.yaml#/GetAuthorResponse'
