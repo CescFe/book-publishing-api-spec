@@ -42,8 +42,9 @@ paths:
         - GetAllAuthors
       operationId: getAuthors
       summary: Get all authors
-      description: Retrieve a paginated list of all authors
+      description: Retrieve a paginated list of all authors, optionally non-paginated
       parameters:
+        - $ref: './shared/components/parameters/pagination.yaml#/paginate'
         - $ref: './shared/components/parameters/pagination.yaml#/page'
         - $ref: './shared/components/parameters/pagination.yaml#/limit'
         - $ref: './shared/components/parameters/pagination.yaml#/search'
