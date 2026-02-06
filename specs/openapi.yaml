@@ -143,8 +143,9 @@ paths:
         - GetAllBooks
       operationId: getBooks
       summary: Get all books
-      description: Retrieve a paginated list of all books
+      description: Retrieve a list of all books, optionally paginated
       parameters:
+        - $ref: './shared/components/parameters/pagination.yaml#/paginate'
         - $ref: './shared/components/parameters/pagination.yaml#/page'
         - $ref: './shared/components/parameters/pagination.yaml#/limit'
         - $ref: './shared/components/parameters/pagination.yaml#/search'
@@ -243,8 +244,9 @@ paths:
         - GetAllCollections
       operationId: getCollections
       summary: Get all collections
-      description: Retrieve a paginated list of all collections
+      description: Retrieve a list of all collections, optionally paginated
       parameters:
+        - $ref: './shared/components/parameters/pagination.yaml#/paginate'
         - $ref: './shared/components/parameters/pagination.yaml#/page'
         - $ref: './shared/components/parameters/pagination.yaml#/limit'
         - $ref: './shared/components/parameters/pagination.yaml#/search'
