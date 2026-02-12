@@ -1,7 +1,7 @@
 openapi: 3.1.2
 info:
   title: Book Publishing API
-  version: 1.3.2
+  version: 1.3.3
   description: |-
     API for managing books, authors, and collections in a publishing system.
     This API provides CRUD operations for books, collections and authors secured with jwt.
@@ -43,8 +43,6 @@ paths:
       operationId: getAuthors
       summary: Get all authors
       description: Retrieve a list of all authors without pagination
-      parameters:
-        - $ref: './shared/components/parameters/pagination.yaml#/search'
       responses:
         '200':
           $ref: './author/components/responses/authors-list.yaml'
@@ -141,8 +139,6 @@ paths:
       operationId: getBooks
       summary: Get all books
       description: Retrieve a list of all books without pagination
-      parameters:
-        - $ref: './shared/components/parameters/pagination.yaml#/search'
       responses:
         '200':
           $ref: './book/components/responses/books-list.yaml'
@@ -239,8 +235,6 @@ paths:
       operationId: getCollections
       summary: Get all collections
       description: Retrieve a list of all collections without pagination
-      parameters:
-        - $ref: './shared/components/parameters/pagination.yaml#/search'
       responses:
         '200':
           $ref: './collection/components/responses/collections-list.yaml'
