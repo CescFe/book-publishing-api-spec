@@ -25,7 +25,7 @@ This repository contains the OpenAPI 3.1.2 specification for a Book Publishing A
 - `POST /api/v1/auth/login` - Authenticate user and get access token
 
 ### Authors
-- `GET /api/v1/authors` - Get all authors (paginated)
+- `GET /api/v1/authors` - Get all authors (non-paginated)
 - `POST /api/v1/authors` - Create a new author
 - `GET /api/v1/authors/{id}` - Get author by ID
 - `PUT /api/v1/authors/{id}` - Update author
