@@ -244,11 +244,8 @@ paths:
         - GetAllCollections
       operationId: getCollections
       summary: Get all collections
-      description: Retrieve a list of all collections, optionally paginated
+      description: Retrieve a list of all collections without pagination
       parameters:
-        - $ref: './shared/components/parameters/pagination.yaml#/paginate'
-        - $ref: './shared/components/parameters/pagination.yaml#/page'
-        - $ref: './shared/components/parameters/pagination.yaml#/limit'
         - $ref: './shared/components/parameters/pagination.yaml#/search'
       responses:
         '200':

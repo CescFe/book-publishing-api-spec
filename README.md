@@ -39,7 +39,7 @@ This repository contains the OpenAPI 3.1.2 specification for a Book Publishing A
 - `DELETE /api/v1/books/{id}` - Delete book
 
 ### Collections
-- `GET /api/v1/collections` - Get all collections (paginated)
+- `GET /api/v1/collections` - Get all collections (non-paginated)
 - `POST /api/v1/collections` - Create a new collection
 - `GET /api/v1/collections/{id}` - Get collection by ID
 - `PUT /api/v1/collections/{id}` - Update collection
