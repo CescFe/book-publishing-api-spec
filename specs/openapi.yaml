@@ -1,7 +1,7 @@
 openapi: 3.1.2
 info:
   title: Book Publishing API
-  version: 1.3.1
+  version: 1.3.2
   description: |-
     API for managing books, authors, and collections in a publishing system.
     This API provides CRUD operations for books, collections and authors secured with jwt.
@@ -42,11 +42,8 @@ paths:
         - GetAllAuthors
       operationId: getAuthors
       summary: Get all authors
-      description: Retrieve a paginated list of all authors, optionally non-paginated
+      description: Retrieve a list of all authors without pagination
       parameters:
-        - $ref: './shared/components/parameters/pagination.yaml#/paginate'
-        - $ref: './shared/components/parameters/pagination.yaml#/page'
-        - $ref: './shared/components/parameters/pagination.yaml#/limit'
         - $ref: './shared/components/parameters/pagination.yaml#/search'
       responses:
         '200':
@@ -143,11 +140,8 @@ paths:
         - GetAllBooks
       operationId: getBooks
       summary: Get all books
-      description: Retrieve a list of all books, optionally paginated
+      description: Retrieve a list of all books without pagination
       parameters:
-        - $ref: './shared/components/parameters/pagination.yaml#/paginate'
-        - $ref: './shared/components/parameters/pagination.yaml#/page'
-        - $ref: './shared/components/parameters/pagination.yaml#/limit'
         - $ref: './shared/components/parameters/pagination.yaml#/search'
       responses:
         '200':
@@ -244,11 +238,8 @@ paths:
         - GetAllCollections
       operationId: getCollections
       summary: Get all collections
-      description: Retrieve a list of all collections, optionally paginated
+      description: Retrieve a list of all collections without pagination
       parameters:
-        - $ref: './shared/components/parameters/pagination.yaml#/paginate'
-        - $ref: './shared/components/parameters/pagination.yaml#/page'
-        - $ref: './shared/components/parameters/pagination.yaml#/limit'
         - $ref: './shared/components/parameters/pagination.yaml#/search'
       responses:
         '200':

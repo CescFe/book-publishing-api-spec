@@ -2,29 +2,14 @@ description: List of authors retrieved successfully
 content:
   application/json:
     schema:
-      oneOf:
-        - allOf:
-            - $ref: '../../../shared/components/schemas/paginated-response.yaml#/PaginatedResponse'
-            - type: object
-              properties:
-                data:
-                  type: array
-                  items:
-                    $ref: '../schemas/author-summary.yaml'
-        - type: object
-          properties:
-            data:
-              type: array
-              items:
-                $ref: '../schemas/author-summary.yaml'
-            meta:
-              type: object
-              properties:
-                total:
-                  type: integer
-                  description: Total number of items
-              required:
-                - total
-          required:
-            - data
-            - meta
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '../schemas/author-summary.yaml'
+        meta:
+          $ref: '../../../shared/components/schemas/meta.yaml#/Meta'
+      required:
+        - data
+        - meta
