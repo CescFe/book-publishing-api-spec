@@ -1,0 +1,8 @@
+Meta:
+  type: object
+  properties:
+    total:
+      type: integer
+      description: Total number of items
+  required:
+    - total

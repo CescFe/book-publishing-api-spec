@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "org.cescfe"
-version = "1.3.1"
+version = "1.3.2"
 
 val developer = "FrancescFe"
 val repositoryUrl = "https://github.com/CescFe/book-publishing-api-spec"
