@@ -1,0 +1,15 @@
+description: Paginated list of collections retrieved successfully
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '../schemas/collection-summary.yaml'
+        meta:
+          $ref: '../../../shared/components/schemas/meta.yaml#/MetaPaginated'
+      required:
+        - data
+        - meta

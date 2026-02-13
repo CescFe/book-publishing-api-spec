@@ -1,0 +1,15 @@
+description: List of all collections retrieved successfully
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '../schemas/collection-summary.yaml'
+        meta:
+          $ref: '../../../shared/components/schemas/meta.yaml#/MetaNonPaginated'
+      required:
+        - data
+        - meta
