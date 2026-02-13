@@ -43,6 +43,9 @@ paths:
       operationId: listAuthorsPaginated
       summary: List authors paginated
       description: Retrieve a list of authors with pagination
+      parameters:
+        - $ref: './shared/components/parameters/pagination.yaml#/limit'
+        - $ref: './shared/components/parameters/pagination.yaml#/page'
       responses:
         '200':
           $ref: './author/components/responses/authors-list-paginated.yaml'
@@ -153,6 +156,9 @@ paths:
       operationId: listBooksPaginated
       summary: List books paginated
       description: Retrieve a list of books with pagination
+      parameters:
+        - $ref: './shared/components/parameters/pagination.yaml#/limit'
+        - $ref: './shared/components/parameters/pagination.yaml#/page'
       responses:
         '200':
           $ref: './book/components/responses/books-list-paginated.yaml'
@@ -263,6 +269,9 @@ paths:
       operationId: listCollectionsPaginated
       summary: List collections paginated
       description: Retrieve a list of collections with pagination
+      parameters:
+        - $ref: './shared/components/parameters/pagination.yaml#/limit'
+        - $ref: './shared/components/parameters/pagination.yaml#/page'
       responses:
         '200':
           $ref: './collection/components/responses/collections-list-paginated.yaml'
