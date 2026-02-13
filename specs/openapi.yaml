@@ -45,7 +45,7 @@ paths:
       description: Retrieve a list of authors with pagination
       responses:
         '200':
-          $ref: './author/components/responses/authors-list.yaml'
+          $ref: './author/components/responses/authors-list-paginated.yaml'
         '400':
           $ref: './shared/components/responses/errors/bad-request.yaml'
         '500':
@@ -81,7 +81,7 @@ paths:
       description: Retrieve a list of all authors without pagination
       responses:
         '200':
-          $ref: './author/components/responses/authors-list.yaml'
+          $ref: './author/components/responses/authors-list-non-paginated.yaml'
         '400':
           $ref: './shared/components/responses/errors/bad-request.yaml'
         '500':
@@ -155,7 +155,7 @@ paths:
       description: Retrieve a list of books with pagination
       responses:
         '200':
-          $ref: './book/components/responses/books-list.yaml'
+          $ref: './book/components/responses/books-list-paginated.yaml'
         '400':
           $ref: './shared/components/responses/errors/bad-request.yaml'
         '500':
@@ -191,7 +191,7 @@ paths:
       description: Retrieve a list of all books without pagination
       responses:
         '200':
-          $ref: './book/components/responses/books-list.yaml'
+          $ref: './book/components/responses/books-list-non-paginated.yaml'
         '400':
           $ref: './shared/components/responses/errors/bad-request.yaml'
         '500':
@@ -265,7 +265,7 @@ paths:
       description: Retrieve a list of collections with pagination
       responses:
         '200':
-          $ref: './collection/components/responses/collections-list.yaml'
+          $ref: './collection/components/responses/collections-list-paginated.yaml'
         '400':
           $ref: './shared/components/responses/errors/bad-request.yaml'
         '500':
@@ -301,7 +301,7 @@ paths:
       description: Retrieve a list of all collections without pagination
       responses:
         '200':
-          $ref: './collection/components/responses/collections-list.yaml'
+          $ref: './collection/components/responses/collections-list-non-paginated.yaml'
         '400':
           $ref: './shared/components/responses/errors/bad-request.yaml'
         '500':

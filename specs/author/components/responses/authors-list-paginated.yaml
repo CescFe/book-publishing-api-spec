@@ -1,4 +1,4 @@
-description: List of collections retrieved successfully
+description: Paginated list of authors retrieved successfully
 content:
   application/json:
     schema:
@@ -7,9 +7,9 @@ content:
         data:
           type: array
           items:
-            $ref: '../schemas/collection-summary.yaml'
+            $ref: '../schemas/author-summary.yaml'
         meta:
-          $ref: '../../../shared/components/schemas/meta.yaml#/Meta'
+          $ref: '../../../shared/components/schemas/meta.yaml#/MetaPaginated'
       required:
         - data
         - meta

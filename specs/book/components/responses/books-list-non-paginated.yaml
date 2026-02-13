@@ -1,4 +1,4 @@
-description: List of books retrieved successfully
+description: List of all books retrieved successfully
 content:
   application/json:
     schema:
@@ -9,7 +9,7 @@ content:
           items:
             $ref: '../schemas/book-summary.yaml'
         meta:
-          $ref: '../../../shared/components/schemas/meta.yaml#/Meta'
+          $ref: '../../../shared/components/schemas/meta.yaml#/MetaNonPaginated'
       required:
         - data
         - meta
