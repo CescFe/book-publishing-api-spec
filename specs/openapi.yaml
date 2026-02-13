@@ -1,7 +1,7 @@
 openapi: 3.1.2
 info:
   title: Book Publishing API
-  version: 1.3.3
+  version: 1.4.0
   description: |-
     API for managing books, authors, and collections in a publishing system.
     This API provides CRUD operations for books, collections and authors secured with jwt.
@@ -39,10 +39,10 @@ paths:
   /api/v1/authors:
     get:
       tags:
-        - GetAllAuthors
-      operationId: getAuthors
-      summary: Get all authors
-      description: Retrieve a list of all authors without pagination
+        - ListAuthorsPaginated
+      operationId: listAuthorsPaginated
+      summary: List authors paginated
+      description: Retrieve a list of authors with pagination
       responses:
         '200':
           $ref: './author/components/responses/authors-list.yaml'
@@ -70,6 +70,20 @@ paths:
           $ref: './shared/components/responses/errors/bad-request.yaml'
         '409':
           $ref: './shared/components/responses/errors/conflict.yaml'
+        '500':
+          $ref: './shared/components/responses/errors/internal-error.yaml'
+  /api/v1/authors/all:
+    get:
+      tags:
+        - ListAllAuthors
+      operationId: listAllAuthors
+      summary: Get all authors
+      description: Retrieve a list of all authors without pagination
+      responses:
+        '200':
+          $ref: './author/components/responses/authors-list.yaml'
+        '400':
+          $ref: './shared/components/responses/errors/bad-request.yaml'
         '500':
           $ref: './shared/components/responses/errors/internal-error.yaml'
   /api/v1/authors/{id}:
@@ -135,10 +149,10 @@ paths:
   /api/v1/books:
     get:
       tags:
-        - GetAllBooks
-      operationId: getBooks
-      summary: Get all books
-      description: Retrieve a list of all books without pagination
+        - ListBooksPaginated
+      operationId: listBooksPaginated
+      summary: List books paginated
+      description: Retrieve a list of books with pagination
       responses:
         '200':
           $ref: './book/components/responses/books-list.yaml'
@@ -166,6 +180,20 @@ paths:
           $ref: './shared/components/responses/errors/bad-request.yaml'
         '409':
           $ref: './shared/components/responses/errors/conflict.yaml'
+        '500':
+          $ref: './shared/components/responses/errors/internal-error.yaml'
+  /api/v1/books/all:
+    get:
+      tags:
+        - ListAllBooks
+      operationId: listAllBooks
+      summary: List all books
+      description: Retrieve a list of all books without pagination
+      responses:
+        '200':
+          $ref: './book/components/responses/books-list.yaml'
+        '400':
+          $ref: './shared/components/responses/errors/bad-request.yaml'
         '500':
           $ref: './shared/components/responses/errors/internal-error.yaml'
   /api/v1/books/{id}:
@@ -231,10 +259,10 @@ paths:
   /api/v1/collections:
     get:
       tags:
-        - GetAllCollections
-      operationId: getCollections
-      summary: Get all collections
-      description: Retrieve a list of all collections without pagination
+        - ListCollectionsPaginated
+      operationId: listCollectionsPaginated
+      summary: List collections paginated
+      description: Retrieve a list of collections with pagination
       responses:
         '200':
           $ref: './collection/components/responses/collections-list.yaml'
@@ -262,6 +290,20 @@ paths:
           $ref: './shared/components/responses/errors/bad-request.yaml'
         '409':
           $ref: './shared/components/responses/errors/conflict.yaml'
+        '500':
+          $ref: './shared/components/responses/errors/internal-error.yaml'
+  /api/v1/collections/all:
+    get:
+      tags:
+        - ListAllCollections
+      operationId: listAllCollections
+      summary: List all collections
+      description: Retrieve a list of all collections without pagination
+      responses:
+        '200':
+          $ref: './collection/components/responses/collections-list.yaml'
+        '400':
+          $ref: './shared/components/responses/errors/bad-request.yaml'
         '500':
           $ref: './shared/components/responses/errors/internal-error.yaml'
   /api/v1/collections/{id}:
