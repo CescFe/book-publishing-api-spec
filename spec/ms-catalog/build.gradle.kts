@@ -9,7 +9,7 @@ plugins {
     id("com.google.cloud.artifactregistry.gradle-plugin") version "2.2.0"
 }
 
-version = providers.gradleProperty("packageVersion").orElse("1.4.0").get()
+version = providers.gradleProperty("packageVersion").orElse("1.5.0").get()
 
 val developer = "FrancescFe"
 val repositoryUrl = "https://github.com/CescFe/book-publishing-api-spec"
