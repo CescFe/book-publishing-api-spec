@@ -1,0 +1,19 @@
+openapi: 3.1.2
+info:
+  title: Book Publishing API Catalog
+  version: 0.1.0
+  description: |-
+    Public API for consuming information about books, authors, and collections in a publishing system.
+    This API provides read-only operations for books, collections and authors.
+  contact:
+    name: FrancescFe
+    url: https://github.com/FrancescFe
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: http://localhost:8080
+    description: local server
+
+paths: {}
