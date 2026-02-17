@@ -8,6 +8,8 @@ on:
       - 'spec/**/*.yaml'
       - 'spec/**/*.yml'
       - 'spec/**/build.gradle.kts'
+      - 'gradle/**'
+      - 'gradle.properties'
       - 'settings.gradle.kts'
       - 'build.gradle.kts'
   push:
@@ -16,6 +18,8 @@ on:
       - 'spec/**/*.yaml'
       - 'spec/**/*.yml'
       - 'spec/**/build.gradle.kts'
+      - 'gradle/**'
+      - 'gradle.properties'
       - 'settings.gradle.kts'
       - 'build.gradle.kts'
 
@@ -33,17 +37,21 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Discover spec modules
+      - name: Discover affected spec modules
         id: discover
         run: |
+          set -euo pipefail
+
           if [ ! -d spec ]; then
             echo 'matrix={"spec":[]}' >> "$GITHUB_OUTPUT"
             echo 'count=0' >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
-          spec_dirs=$(find spec -mindepth 2 -maxdepth 2 -type f -name 'build.gradle.kts' -printf '%h\n' | sed 's#^spec/##' | sort)
+          spec_dirs=$(find spec -mindepth 2 -maxdepth 2 -type f -name 'build.gradle.kts' -printf '%h\n' | sed 's#^spec/##' | sort -u)
 
           if [ -z "$spec_dirs" ]; then
             echo 'matrix={"spec":[]}' >> "$GITHUB_OUTPUT"
@@ -51,8 +59,34 @@ jobs:
             exit 0
           fi
 
-          matrix=$(printf '%s\n' "$spec_dirs" | jq -R . | jq -cs '{spec: .}')
-          count=$(printf '%s\n' "$spec_dirs" | sed '/^$/d' | wc -l)
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            changed_files=$(git diff --name-only "origin/${{ github.base_ref }}...${{ github.sha }}")
+          else
+            if [ "${{ github.event.before }}" = "0000000000000000000000000000000000000000" ]; then
+              changed_files=$(printf '%s\n' "$spec_dirs" | sed 's#^#spec/#' | sed 's#$#/build.gradle.kts#')
+            else
+              changed_files=$(git diff --name-only "${{ github.event.before }}" "${{ github.sha }}")
+            fi
+          fi
+
+          # Shared build logic changes should validate all modules.
+          if printf '%s\n' "$changed_files" | grep -Eq '^(settings\.gradle\.kts|build\.gradle\.kts|gradle/|gradle\.properties)'; then
+            affected_specs="$spec_dirs"
+          else
+            affected_specs=$(printf '%s\n' "$changed_files" | awk -F/ '/^spec\/[^\/]+\// {print $2}' | sort -u)
+            if [ -n "$affected_specs" ]; then
+              affected_specs=$(comm -12 <(printf '%s\n' "$affected_specs" | sort -u) <(printf '%s\n' "$spec_dirs" | sort -u))
+            fi
+          fi
+
+          if [ -z "${affected_specs:-}" ]; then
+            echo 'matrix={"spec":[]}' >> "$GITHUB_OUTPUT"
+            echo 'count=0' >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          matrix=$(printf '%s\n' "$affected_specs" | jq -R . | jq -cs '{spec: .}')
+          count=$(printf '%s\n' "$affected_specs" | sed '/^$/d' | wc -l)
           echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
           echo "count=$count" >> "$GITHUB_OUTPUT"
 
