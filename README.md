@@ -3,15 +3,16 @@
 [![GitHub release](https://img.shields.io/github/v/release/CescFe/book-publishing-api-spec?color=blue)](https://github.com/CescFe/book-publishing-api-spec/releases/latest)
 [![GitHub license](https://img.shields.io/github/license/CescFe/book-publishing-api-spec?color=blue)](https://github.com/CescFe/book-publishing-api-spec/blob/main/LICENSE)
 
-API specification for a Book Publishing system with automatic Kotlin Spring code generation.
+Modular API specification repository for a Book Publishing system with automatic Kotlin Spring code generation.
 
 ## Overview
 
-This repository contains the OpenAPI 3.1.2 specification for a Book Publishing API that manages books, authors, and collections. The specification is automatically validated and used to generate Kotlin Spring Boot 3 compatible code.
+This repository contains OpenAPI 3.1.2 specifications organized by module under `spec/<spec-name>`. Each module is an independent Gradle project with its own OpenAPI validation, code generation, and package publication lifecycle.
 
 ## Features
 
 - ✅ **OpenAPI 3.1.2** specification with comprehensive CRUD operations
+- ✅ **Modular structure** for multiple independent specs (`spec/<spec-name>`)
 - ✅ **Authentication & Authorization** with Bearer token support
 - ✅ **Automatic validation** on every pull request
 - ✅ **Kotlin Spring code generation** with Jackson serialization
@@ -19,34 +20,23 @@ This repository contains the OpenAPI 3.1.2 specification for a Book Publishing A
 - ✅ **Automated release workflow** with tag creation and package publishing
 - ✅ **Audit fields** (created_at, created_by, updated_at, updated_by)
 
-## API Endpoints
+## Repository Structure
 
-### Authentication
-- `POST /api/v1/auth/login` - Authenticate user and get access token
+```text
+spec/
+  ms-catalog/
+    openapi.yaml
+    build.gradle.kts
+    ...
+```
 
-### Authors
-- `GET /api/v1/authors` - List of authors (paginated)
-- `POST /api/v1/authors` - Create a new author
-- `GET /api/v1/authors/all` - List all authors (non-paginated)
-- `GET /api/v1/authors/{id}` - Get author by ID
-- `PUT /api/v1/authors/{id}` - Update author
-- `DELETE /api/v1/authors/{id}` - Delete author
+Each folder under `spec/` is an independent Gradle module with its own OpenAPI generation and publication lifecycle.
 
-### Books
-- `GET /api/v1/books` - List of books (paginated)
-- `POST /api/v1/books` - Create a new book
-- `GET /api/v1/books/all` - List all books (non-paginated)
-- `GET /api/v1/books/{id}` - Get book by ID
-- `PUT /api/v1/books/{id}` - Update book
-- `DELETE /api/v1/books/{id}` - Delete book
+## Spec Modules
 
-### Collections
-- `GET /api/v1/collections` - List of collections (paginated)
-- `POST /api/v1/collections` - Create a new collection
-- `GET /api/v1/collections/all` - List all collections (non-paginated)
-- `GET /api/v1/collections/{id}` - Get collection by ID
-- `PUT /api/v1/collections/{id}` - Update collection
-- `DELETE /api/v1/collections/{id}` - Delete collection
+- [`ms-catalog`](spec/ms-catalog/README.md): API for catalog management (authors, books, and collections)
+
+Module-specific details (endpoints, schemas, package coordinates) live in each module README.
 
 ## Local Development
 
@@ -57,32 +47,24 @@ This repository contains the OpenAPI 3.1.2 specification for a Book Publishing A
 ### Validation
 
 ```bash
-# Validate OpenAPI specification
-./gradlew openApiValidate
+# List available projects/modules
+./gradlew projects
 
-# Generate Kotlin Spring code
-./gradlew openApiGenerate
+# Validate one spec module
+./gradlew :spec:<spec-name>:openApiValidate
 
-# Build the project
+# Generate Kotlin Spring code for one module
+./gradlew :spec:<spec-name>:openApiGenerate
+
+# Build all modules
 ./gradlew build
 ```
-
-### Generated Code
-
-The generated code includes:
-- **DTOs**: Kotlin data classes for all schemas
-- **API Interfaces**: Spring Boot 3 compatible interfaces for all endpoints
-- **Jackson Serialization**: Configured for JSON serialization/deserialization
-- **Bean Validation**: Jakarta validation annotations
-- **Security**: Bearer token authentication support
-
-Generated files are placed in `build/generated-sources/openapi/`.
 
 ## CI/CD Workflow
 
 ### Automatic Validation
 
-Every pull request automatically runs:
+Every pull request automatically runs (for each module found in `spec/*`):
 - ✅ **OpenAPI Specification Validation** - Validates the YAML specification
 - ✅ **Build and Compilation** - Generates code and verifies compilation
 
@@ -92,9 +74,11 @@ The release process is partially automated and consists of these steps:
 
 #### 1. Create Tag
 
-1. Go to **Actions** → **Create Release Tag**
-2. Run manually with the desired version (e.g., `v0.1.0`)
-3. This creates a Git tag and GitHub release
+1. Go to **Actions** → **Create and Push Spec Tag**
+2. Run manually with:
+   - `spec` (for example, `ms-catalog`)
+   - `version` (for example, `v1.4.0`)
+3. This creates a module-scoped tag with format `spec/<spec>/vX.Y.Z` (for example, `spec/ms-catalog/v1.4.0`)
 
 #### 2. Release Tag
 
@@ -105,37 +89,20 @@ The release process is partially automated and consists of these steps:
 #### 3. Publish Package
 
 1. Go to **Actions** → **Publish Package**
-2. Run manually with the version (e.g., `0.1.0`)
-3. The package is published to Google Artifact Registry
+2. Run manually with the module and version (e.g., `ms-catalog`, `0.1.0`)
+3. The selected module package is published to Google Artifact Registry
 
 ##### Manual Publishing
 ```bash
-./gradlew publish
+./gradlew :spec:<spec-name>:publish -PpackageVersion=0.1.0
 ```
 
 ## Consuming the Generated Code
 
-### In your Spring Boot project
-
-Add to your `build.gradle.kts`:
-
-```kotlin
-repositories {
-    mavenCentral()
-    maven {
-        name = "ArtifactRegistry"
-        url = uri("artifactregistry://my_uri")
-    }
-}
-
-dependencies {
-    implementation("org.cescfe:book-publishing-api-spec:0.1.0") // or the desired version
-}
-```
-
-### Package Coordinates
-
+Package coordinates are module-specific and follow this pattern:
 - **Group**: `org.cescfe`
-- **Artifact**: `book-publishing-api-spec`
-- **Version**: `0.1.0` (or latest)
+- **Artifact**: `book-publishing-<spec-name>-api-spec`
+- **Version**: your published version
 - **Repository**: Google Artifact Registry
+
+See each module README for concrete dependency examples.

@@ -3,6 +3,10 @@ name: Publish Package to Artifact Registry
 on:
   workflow_dispatch:
     inputs:
+      spec:
+        description: "Spec module under /spec (e.g., ms-catalog)"
+        required: true
+        default: "ms-catalog"
       version:
         description: "Package version to publish (e.g., 0.1.0)"
         required: true
@@ -37,19 +41,24 @@ jobs:
         with:
           gradle-version: wrapper
 
-      - name: Set version property
-        run: echo "version=${{ github.event.inputs.version }}" >> gradle.properties
+      - name: Validate selected spec module
+        run: |
+          if [ ! -f "spec/${{ github.event.inputs.spec }}/build.gradle.kts" ]; then
+            echo "::error::Spec module 'spec/${{ github.event.inputs.spec }}' does not exist or is missing build.gradle.kts"
+            exit 1
+          fi
 
       - name: Generate code
-        run: ./gradlew openApiGenerate
+        run: ./gradlew ":spec:${{ github.event.inputs.spec }}:openApiGenerate" -PpackageVersion="${{ github.event.inputs.version }}" --no-daemon --warning-mode all
 
       - name: Build JAR
-        run: ./gradlew build
+        run: ./gradlew ":spec:${{ github.event.inputs.spec }}:build" -PpackageVersion="${{ github.event.inputs.version }}" --no-daemon --warning-mode all
 
       - name: Publish to Artifact Registry
-        run: ./gradlew publish
+        run: ./gradlew ":spec:${{ github.event.inputs.spec }}:publish" -PpackageVersion="${{ github.event.inputs.version }}" --no-daemon --warning-mode all
 
       - name: Verify package publication
         run: |
+          artifact_id="book-publishing-${{ github.event.inputs.spec }}-api-spec"
           echo "✅ Package published successfully!"
-          echo "Package coordinates: org.cescfe:book-publishing-api-spec:${{ github.event.inputs.version }}"
+          echo "Package coordinates: org.cescfe:${artifact_id}:${{ github.event.inputs.version }}"
