@@ -1,0 +1,40 @@
+type: object
+required:
+  - id
+  - title
+  - author
+  - collection
+  - base_price
+properties:
+  id:
+    $ref: '../../../shared/components/schemas/id.yaml#/Id'
+  title:
+    type: string
+    description: Book title
+    minLength: 1
+    maxLength: 200
+    example: "The Lord of the Rings"
+  author:
+    $ref: './refs/author-ref.yaml#/AuthorRef'
+  collection:
+    $ref: './refs/collection-ref.yaml#/CollectionRef'
+  base_price:
+    type: number
+    format: double
+    minimum: 0
+    multipleOf: 0.01
+    description: "Base price in euros"
+    example: 19.95
+  final_price:
+    type: number
+    format: double
+    readOnly: true
+    description: "Final price including VAT"
+    example: 20.748
+  isbn:
+    type: string
+    pattern: '^(978|979)\d{10}$'
+    description: "ISBN-13 identifier"
+    example: "9780547928227"
+  status:
+    $ref: './enums/status.yaml#/Status'

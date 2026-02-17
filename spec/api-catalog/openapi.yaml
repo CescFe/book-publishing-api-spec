@@ -16,4 +16,21 @@ servers:
   - url: http://localhost:8080
     description: local server
 
-paths: {}
+paths:
+  /api/v1/books:
+    get:
+      tags:
+        - ListBooksPaginated
+      operationId: listBooksPaginated
+      summary: List books with pagination
+      description: Retrieve a paginated list of books.
+      parameters:
+        - $ref: './shared/components/parameters/pagination.yaml#/limit'
+        - $ref: './shared/components/parameters/pagination.yaml#/page'
+      responses:
+        '200':
+          $ref: './book/components/responses/books-list-paginated.yaml'
+        '400':
+          $ref: './shared/components/responses/errors/bad-request.yaml'
+        '500':
+          $ref: './shared/components/responses/errors/internal-error.yaml'
