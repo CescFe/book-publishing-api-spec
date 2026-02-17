@@ -7,7 +7,7 @@ Modular API specification repository for a Book Publishing system with automatic
 
 ## Overview
 
-This repository contains OpenAPI 3.1.2 specifications organized by module under `spec/<spec-name>`. The current module (`spec/ms-catalog`) manages books, authors, and collections, and is automatically validated to generate Kotlin Spring Boot 3 compatible code.
+This repository contains OpenAPI 3.1.2 specifications organized by module under `spec/<spec-name>`. Each module is an independent Gradle project with its own OpenAPI validation, code generation, and package publication lifecycle.
 
 ## Features
 
@@ -32,34 +32,11 @@ spec/
 
 Each folder under `spec/` is an independent Gradle module with its own OpenAPI generation and publication lifecycle.
 
-## API Endpoints
+## Spec Modules
 
-### Authentication
-- `POST /api/v1/auth/login` - Authenticate user and get access token
+- [`ms-catalog`](spec/ms-catalog/README.md): API for catalog management (authors, books, and collections)
 
-### Authors
-- `GET /api/v1/authors` - List of authors (paginated)
-- `POST /api/v1/authors` - Create a new author
-- `GET /api/v1/authors/all` - List all authors (non-paginated)
-- `GET /api/v1/authors/{id}` - Get author by ID
-- `PUT /api/v1/authors/{id}` - Update author
-- `DELETE /api/v1/authors/{id}` - Delete author
-
-### Books
-- `GET /api/v1/books` - List of books (paginated)
-- `POST /api/v1/books` - Create a new book
-- `GET /api/v1/books/all` - List all books (non-paginated)
-- `GET /api/v1/books/{id}` - Get book by ID
-- `PUT /api/v1/books/{id}` - Update book
-- `DELETE /api/v1/books/{id}` - Delete book
-
-### Collections
-- `GET /api/v1/collections` - List of collections (paginated)
-- `POST /api/v1/collections` - Create a new collection
-- `GET /api/v1/collections/all` - List all collections (non-paginated)
-- `GET /api/v1/collections/{id}` - Get collection by ID
-- `PUT /api/v1/collections/{id}` - Update collection
-- `DELETE /api/v1/collections/{id}` - Delete collection
+Module-specific details (endpoints, schemas, package coordinates) live in each module README.
 
 ## Local Development
 
@@ -70,26 +47,18 @@ Each folder under `spec/` is an independent Gradle module with its own OpenAPI g
 ### Validation
 
 ```bash
-# Validate ms-catalog OpenAPI specification
-./gradlew :spec:ms-catalog:openApiValidate
+# List available projects/modules
+./gradlew projects
 
-# Generate Kotlin Spring code for ms-catalog
-./gradlew :spec:ms-catalog:openApiGenerate
+# Validate one spec module
+./gradlew :spec:<spec-name>:openApiValidate
+
+# Generate Kotlin Spring code for one module
+./gradlew :spec:<spec-name>:openApiGenerate
 
 # Build all modules
 ./gradlew build
 ```
-
-### Generated Code
-
-The generated code includes:
-- **DTOs**: Kotlin data classes for all schemas
-- **API Interfaces**: Spring Boot 3 compatible interfaces for all endpoints
-- **Jackson Serialization**: Configured for JSON serialization/deserialization
-- **Bean Validation**: Jakarta validation annotations
-- **Security**: Bearer token authentication support
-
-Generated files for `ms-catalog` are placed in `spec/ms-catalog/build/generated-sources/openapi/`.
 
 ## CI/CD Workflow
 
@@ -105,9 +74,11 @@ The release process is partially automated and consists of these steps:
 
 #### 1. Create Tag
 
-1. Go to **Actions** → **Create Release Tag**
-2. Run manually with the desired version (e.g., `v0.1.0`)
-3. This creates a Git tag and GitHub release
+1. Go to **Actions** → **Create and Push Spec Tag**
+2. Run manually with:
+   - `spec` (for example, `ms-catalog`)
+   - `version` (for example, `v1.4.0`)
+3. This creates a module-scoped tag with format `spec/<spec>/vX.Y.Z` (for example, `spec/ms-catalog/v1.4.0`)
 
 #### 2. Release Tag
 
@@ -123,32 +94,15 @@ The release process is partially automated and consists of these steps:
 
 ##### Manual Publishing
 ```bash
-./gradlew :spec:ms-catalog:publish -PpackageVersion=0.1.0
+./gradlew :spec:<spec-name>:publish -PpackageVersion=0.1.0
 ```
 
 ## Consuming the Generated Code
 
-### In your Spring Boot project
-
-Add to your `build.gradle.kts`:
-
-```kotlin
-repositories {
-    mavenCentral()
-    maven {
-        name = "ArtifactRegistry"
-        url = uri("artifactregistry://my_uri")
-    }
-}
-
-dependencies {
-    implementation("org.cescfe:book-publishing-ms-catalog-api-spec:0.1.0") // or the desired version
-}
-```
-
-### Package Coordinates
-
+Package coordinates are module-specific and follow this pattern:
 - **Group**: `org.cescfe`
-- **Artifact**: `book-publishing-ms-catalog-api-spec`
-- **Version**: `0.1.0` (or latest)
+- **Artifact**: `book-publishing-<spec-name>-api-spec`
+- **Version**: your published version
 - **Repository**: Google Artifact Registry
+
+See each module README for concrete dependency examples.
