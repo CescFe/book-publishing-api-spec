@@ -5,5 +5,5 @@ Status:
     - PUBLISHED
     - OUT_OF_PRINT
     - DISCONTINUED
-  description: Publication status
+  description: Publication status. If not provided, defaults to DRAFT
   example: "PUBLISHED"

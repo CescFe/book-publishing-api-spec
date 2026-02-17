@@ -5,6 +5,9 @@ required:
   - author
   - collection
   - base_price
+  - final_price
+  - isbn
+  - status
 properties:
   id:
     $ref: '../../../shared/components/schemas/id.yaml#/Id'
@@ -34,7 +37,7 @@ properties:
   isbn:
     type: string
     pattern: '^(978|979)\d{10}$'
-    description: "ISBN-13 identifier"
+    description: "Unique ISBN-13 identifier"
     example: "9780547928227"
   status:
     $ref: './enums/status.yaml#/Status'
