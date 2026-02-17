@@ -13,10 +13,10 @@ version = providers.gradleProperty("packageVersion").orElse("1.4.0").get()
 
 val developer = "FrancescFe"
 val repositoryUrl = "https://github.com/CescFe/book-publishing-api-spec"
-val specName = project.name
+val specName: String = project.name
 val artifactName = "book-publishing-$specName-api-spec"
 val openApiPackage = "org.cescfe.bookpublishing.${specName.replace("-", ".")}.infrastructure.openapi"
-val inputSpecPath = layout.projectDirectory.file("openapi.yaml").asFile.absolutePath
+val inputSpecPath: String = layout.projectDirectory.file("openapi.yaml").asFile.absolutePath
 
 val generatedDir: String =
     layout.buildDirectory
