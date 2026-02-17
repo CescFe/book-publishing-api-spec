@@ -5,16 +5,16 @@ def artifactName = "book-publishing-${specName}-api-spec"
 def openApiPackage = "org.cescfe.bookpublishing.${specName.replace('-', '.')}.infrastructure.openapi"
 def inputSpecPath = layout.projectDirectory.file("openapi.yaml").asFile.absolutePath
 def generatedDir = layout.buildDirectory.dir("generated-sources/openapi").get().asFile.absolutePath
-
+def generatedKotlinDir = "${generatedDir}/src/main/kotlin"
 dependencies {
-    compileOnly("com.fasterxml.jackson.core:jackson-databind:2.20.0")
-    compileOnly("jakarta.validation:jakarta.validation-api:3.1.1")
-    compileOnly("io.swagger.core.v3:swagger-annotations:2.2.37")
-    compileOnly("org.springframework.boot:spring-boot-starter-web:3.5.6")
-    compileOnly("org.springframework.boot:spring-boot-starter-validation:3.5.6")
-    compileOnly("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.13")
-    compileOnly("io.swagger.core.v3:swagger-models:2.2.37")
-    compileOnly("io.swagger.core.v3:swagger-core:2.2.37")
+    compileOnly(libs.jackson.databind)
+    compileOnly(libs.jakarta.validation.api)
+    compileOnly(libs.swagger.annotations)
+    compileOnly(libs.spring.boot.starter.web)
+    compileOnly(libs.spring.boot.starter.validation)
+    compileOnly(libs.springdoc.openapi.starter.webmvc.ui)
+    compileOnly(libs.swagger.models)
+    compileOnly(libs.swagger.core)
 }
 
 openApiValidate {
@@ -48,14 +48,6 @@ openApiGenerate {
     )
 }
 
-sourceSets {
-    main {
-        kotlin {
-            srcDirs("${generatedDir}/src/main/kotlin")
-        }
-    }
-}
-
 tasks.named("openApiGenerate") {
     dependsOn("openApiValidate")
     doFirst {
@@ -65,12 +57,13 @@ tasks.named("openApiGenerate") {
 
 tasks.named("compileKotlin").configure {
     dependsOn("openApiGenerate")
+    source(generatedKotlinDir)
 }
 
-publishing {
-    publications {
-        create("maven", org.gradle.api.publish.maven.MavenPublication) {
-            from(components["java"])
+extensions.configure(PublishingExtension) { publishingExt ->
+    publishingExt.publications {
+        register("maven", MavenPublication) {
+            from(project.components.getByName("java"))
 
             groupId = project.group.toString()
             artifactId = artifactName
@@ -98,7 +91,7 @@ publishing {
         }
     }
 
-    repositories {
+    publishingExt.repositories {
         maven {
             url = uri("artifactregistry://europe-west1-maven.pkg.dev/book-publishing-backend/maven-repo")
         }
