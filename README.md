@@ -3,21 +3,34 @@
 [![GitHub release](https://img.shields.io/github/v/release/CescFe/book-publishing-api-spec?color=blue)](https://github.com/CescFe/book-publishing-api-spec/releases/latest)
 [![GitHub license](https://img.shields.io/github/license/CescFe/book-publishing-api-spec?color=blue)](https://github.com/CescFe/book-publishing-api-spec/blob/main/LICENSE)
 
-API specification for a Book Publishing system with automatic Kotlin Spring code generation.
+Modular API specification repository for a Book Publishing system with automatic Kotlin Spring code generation.
 
 ## Overview
 
-This repository contains the OpenAPI 3.1.2 specification for a Book Publishing API that manages books, authors, and collections. The specification is automatically validated and used to generate Kotlin Spring Boot 3 compatible code.
+This repository contains OpenAPI 3.1.2 specifications organized by module under `spec/<spec-name>`. The current module (`spec/ms-catalog`) manages books, authors, and collections, and is automatically validated to generate Kotlin Spring Boot 3 compatible code.
 
 ## Features
 
 - ✅ **OpenAPI 3.1.2** specification with comprehensive CRUD operations
+- ✅ **Modular structure** for multiple independent specs (`spec/<spec-name>`)
 - ✅ **Authentication & Authorization** with Bearer token support
 - ✅ **Automatic validation** on every pull request
 - ✅ **Kotlin Spring code generation** with Jackson serialization
 - ✅ **Artifact Registry publishing** for dependency consumption
 - ✅ **Automated release workflow** with tag creation and package publishing
 - ✅ **Audit fields** (created_at, created_by, updated_at, updated_by)
+
+## Repository Structure
+
+```text
+spec/
+  ms-catalog/
+    openapi.yaml
+    build.gradle.kts
+    ...
+```
+
+Each folder under `spec/` is an independent Gradle module with its own OpenAPI generation and publication lifecycle.
 
 ## API Endpoints
 
@@ -57,13 +70,13 @@ This repository contains the OpenAPI 3.1.2 specification for a Book Publishing A
 ### Validation
 
 ```bash
-# Validate OpenAPI specification
-./gradlew openApiValidate
+# Validate ms-catalog OpenAPI specification
+./gradlew :spec:ms-catalog:openApiValidate
 
-# Generate Kotlin Spring code
-./gradlew openApiGenerate
+# Generate Kotlin Spring code for ms-catalog
+./gradlew :spec:ms-catalog:openApiGenerate
 
-# Build the project
+# Build all modules
 ./gradlew build
 ```
 
@@ -76,13 +89,13 @@ The generated code includes:
 - **Bean Validation**: Jakarta validation annotations
 - **Security**: Bearer token authentication support
 
-Generated files are placed in `build/generated-sources/openapi/`.
+Generated files for `ms-catalog` are placed in `spec/ms-catalog/build/generated-sources/openapi/`.
 
 ## CI/CD Workflow
 
 ### Automatic Validation
 
-Every pull request automatically runs:
+Every pull request automatically runs (for each module found in `spec/*`):
 - ✅ **OpenAPI Specification Validation** - Validates the YAML specification
 - ✅ **Build and Compilation** - Generates code and verifies compilation
 
@@ -105,12 +118,12 @@ The release process is partially automated and consists of these steps:
 #### 3. Publish Package
 
 1. Go to **Actions** → **Publish Package**
-2. Run manually with the version (e.g., `0.1.0`)
-3. The package is published to Google Artifact Registry
+2. Run manually with the module and version (e.g., `ms-catalog`, `0.1.0`)
+3. The selected module package is published to Google Artifact Registry
 
 ##### Manual Publishing
 ```bash
-./gradlew publish
+./gradlew :spec:ms-catalog:publish -PpackageVersion=0.1.0
 ```
 
 ## Consuming the Generated Code
@@ -129,13 +142,13 @@ repositories {
 }
 
 dependencies {
-    implementation("org.cescfe:book-publishing-api-spec:0.1.0") // or the desired version
+    implementation("org.cescfe:book-publishing-ms-catalog-api-spec:0.1.0") // or the desired version
 }
 ```
 
 ### Package Coordinates
 
 - **Group**: `org.cescfe`
-- **Artifact**: `book-publishing-api-spec`
+- **Artifact**: `book-publishing-ms-catalog-api-spec`
 - **Version**: `0.1.0` (or latest)
 - **Repository**: Google Artifact Registry

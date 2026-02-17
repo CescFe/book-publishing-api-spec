@@ -1,18 +1,22 @@
-name: Validate API Build & OpenAPI
+name: Validate API Build & OpenAPI Specs
 
 on:
   pull_request:
     branches: [main]
-    types: [ opened, synchronize, reopened, ready_for_review ]
+    types: [opened, synchronize, reopened, ready_for_review]
     paths:
-      - 'specs/**/*.yaml'
-      - 'specs/**/*.yml'
+      - 'spec/**/*.yaml'
+      - 'spec/**/*.yml'
+      - 'spec/**/build.gradle.kts'
+      - 'settings.gradle.kts'
       - 'build.gradle.kts'
   push:
     branches: [main]
     paths:
-      - 'specs/**/*.yaml'
-      - 'specs/**/*.yml'
+      - 'spec/**/*.yaml'
+      - 'spec/**/*.yml'
+      - 'spec/**/build.gradle.kts'
+      - 'settings.gradle.kts'
       - 'build.gradle.kts'
 
 concurrency:
@@ -20,11 +24,49 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  discover-specs:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.discover.outputs.matrix }}
+      count: ${{ steps.discover.outputs.count }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Discover spec modules
+        id: discover
+        run: |
+          if [ ! -d spec ]; then
+            echo 'matrix={"spec":[]}' >> "$GITHUB_OUTPUT"
+            echo 'count=0' >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          spec_dirs=$(find spec -mindepth 2 -maxdepth 2 -type f -name 'build.gradle.kts' -printf '%h\n' | sed 's#^spec/##' | sort)
+
+          if [ -z "$spec_dirs" ]; then
+            echo 'matrix={"spec":[]}' >> "$GITHUB_OUTPUT"
+            echo 'count=0' >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          matrix=$(printf '%s\n' "$spec_dirs" | jq -R . | jq -cs '{spec: .}')
+          count=$(printf '%s\n' "$spec_dirs" | sed '/^$/d' | wc -l)
+          echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
+          echo "count=$count" >> "$GITHUB_OUTPUT"
+
   validate:
+    needs: discover-specs
     runs-on: ubuntu-latest
     if: |
-      github.event_name == 'push' ||
-      (github.event_name == 'pull_request' && github.event.pull_request.draft == false)
+      (github.event_name == 'push' ||
+      (github.event_name == 'pull_request' && github.event.pull_request.draft == false)) &&
+      needs.discover-specs.outputs.count != '0'
+
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.discover-specs.outputs.matrix) }}
 
     steps:
       - name: Checkout repository
@@ -44,10 +86,10 @@ jobs:
           cache-read-only: false
 
       - name: Validate OpenAPI spec
-        run: ./gradlew openApiValidate
+        run: ./gradlew ":spec:${{ matrix.spec }}:openApiValidate" --no-daemon --warning-mode all
 
       - name: Generate OpenAPI code
-        run: ./gradlew openApiGenerate
+        run: ./gradlew ":spec:${{ matrix.spec }}:openApiGenerate" --no-daemon --warning-mode all
 
-      - name: Build project
-        run: ./gradlew build --no-daemon --warning-mode all
+      - name: Build module
+        run: ./gradlew ":spec:${{ matrix.spec }}:build" --no-daemon --warning-mode all
