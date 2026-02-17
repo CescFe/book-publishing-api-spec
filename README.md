@@ -24,6 +24,10 @@ This repository contains OpenAPI 3.1.2 specifications organized by module under 
 
 ```text
 spec/
+  api-catalog/
+    openapi.yaml
+    build.gradle.kts
+    ...
   ms-catalog/
     openapi.yaml
     build.gradle.kts
@@ -34,7 +38,8 @@ Each folder under `spec/` is an independent Gradle module with its own OpenAPI g
 
 ## Spec Modules
 
-- [`ms-catalog`](spec/ms-catalog/README.md): API for catalog management (authors, books, and collections)
+- [`api-catalog`](spec/api-catalog/README.md): Public read-only API for catalog consumption
+- [`ms-catalog`](spec/ms-catalog/README.md): Internal API for catalog management (authors, books, and collections)
 
 Module-specific details (endpoints, schemas, package coordinates) live in each module README.
 
@@ -76,7 +81,7 @@ The release process is partially automated and consists of these steps:
 
 1. Go to **Actions** → **Create and Push Spec Tag**
 2. Run manually with:
-   - `spec` (for example, `ms-catalog`)
+   - `spec` (for example, `api-catalog` or `ms-catalog`)
    - `version` (for example, `v1.4.0`)
 3. This creates a module-scoped tag with format `spec/<spec>/vX.Y.Z` (for example, `spec/ms-catalog/v1.4.0`)
 
@@ -89,7 +94,7 @@ The release process is partially automated and consists of these steps:
 #### 3. Publish Package
 
 1. Go to **Actions** → **Publish Package**
-2. Run manually with the module and version (e.g., `ms-catalog`, `0.1.0`)
+2. Run manually with the module and version (e.g., `api-catalog`, `0.1.0`)
 3. The selected module package is published to Google Artifact Registry
 
 ##### Manual Publishing
