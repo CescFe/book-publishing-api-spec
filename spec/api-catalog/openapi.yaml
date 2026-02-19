@@ -1,7 +1,7 @@
 openapi: 3.1.2
 info:
   title: Book Publishing API Catalog
-  version: 0.1.2
+  version: 0.1.3
   description: |-
     Public API for consuming information about books, authors, and collections in a publishing system.
     This API provides read-only operations for books, collections and authors.
@@ -42,10 +42,62 @@ paths:
 components:
   schemas:
     ListBooksPaginated200Response:
-      $ref: './book/components/responses/books-list-paginated.yaml#/BooksListPaginated'
+      type: object
+      required:
+        - data
+        - meta
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/BookSummary'
+        meta:
+          $ref: '#/components/schemas/MetaPaginated'
     BookSummary:
-      $ref: './book/components/schemas/book-summary.yaml#/BookSummary'
-    Status:
-      $ref: './book/components/schemas/enums/status.yaml#/Status'
+      type: object
+      required:
+        - id
+        - title
+        - author
+        - collection
+        - base_price
+        - final_price
+        - isbn
+        - status
+      properties:
+        id:
+          $ref: './shared/components/schemas/id.yaml#/Id'
+        title:
+          type: string
+          description: Book title
+          minLength: 1
+          maxLength: 200
+          example: "The Lord of the Rings"
+        author:
+          $ref: './book/components/schemas/refs/author-ref.yaml#/AuthorRef'
+        collection:
+          $ref: './book/components/schemas/refs/collection-ref.yaml#/CollectionRef'
+        base_price:
+          type: number
+          format: double
+          minimum: 0
+          multipleOf: 0.01
+          description: "Base price in euros"
+          example: 19.95
+        final_price:
+          type: number
+          format: double
+          readOnly: true
+          description: "Final price including VAT"
+          example: 20.748
+        isbn:
+          type: string
+          pattern: '^(978|979)\d{10}$'
+          description: "Unique ISBN-13 identifier"
+          example: "9780547928227"
+        status:
+          $ref: '#/components/schemas/Status'
     MetaPaginated:
       $ref: './shared/components/schemas/meta.yaml#/MetaPaginated'
+    Status:
+      $ref: './book/components/schemas/enums/status.yaml#/Status'
