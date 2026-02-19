@@ -1,7 +1,7 @@
 openapi: 3.1.2
 info:
   title: Book Publishing API Catalog
-  version: 0.1.0
+  version: 0.1.1
   description: |-
     Public API for consuming information about books, authors, and collections in a publishing system.
     This API provides read-only operations for books, collections and authors.
@@ -29,8 +29,21 @@ paths:
         - $ref: './shared/components/parameters/pagination.yaml#/page'
       responses:
         '200':
-          $ref: './book/components/responses/books-list-paginated.yaml'
+          description: Paginated list of books retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListBooksPaginated200Response'
         '400':
           $ref: './shared/components/responses/errors/bad-request.yaml'
         '500':
           $ref: './shared/components/responses/errors/internal-error.yaml'
+
+components:
+  schemas:
+    ListBooksPaginated200Response:
+      $ref: './book/components/responses/books-list-paginated.yaml#/BooksListPaginated'
+    BookSummary:
+      $ref: './book/components/schemas/book-summary.yaml#/BookSummary'
+    Status:
+      $ref: './book/components/schemas/enums/status.yaml#/Status'

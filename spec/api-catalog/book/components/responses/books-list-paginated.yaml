@@ -1,15 +1,13 @@
-description: Paginated list of books retrieved successfully
-content:
-  application/json:
-    schema:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '../schemas/book-summary.yaml'
-        meta:
-          $ref: '../../../shared/components/schemas/meta.yaml#/MetaPaginated'
-      required:
-        - data
-        - meta
+BooksListPaginated:
+  title: ListBooksPaginated200Response
+  type: object
+  required:
+    - data
+    - meta
+  properties:
+    data:
+      type: array
+      items:
+        $ref: '../schemas/book-summary.yaml#/BookSummary'
+    meta:
+      $ref: '../../../shared/components/schemas/meta.yaml#/MetaPaginated'
