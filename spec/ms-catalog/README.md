@@ -65,8 +65,8 @@ Generated files are placed in `spec/ms-catalog/build/generated-sources/openapi/`
 
 Package coordinates:
 - **Group**: `org.cescfe`
-- **Artifact**: `book-publishing-ms-catalog-api-spec`
-- **Version**: from `-PpackageVersion` (default `1.4.0`)
+- **Artifact**: `book-publishing-ms-catalog-spec`
+- **Version**: from `-PpackageVersion`
 - **Repository**: Google Artifact Registry
 
 ## Release Tag Format

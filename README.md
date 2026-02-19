@@ -106,7 +106,7 @@ The release process is partially automated and consists of these steps:
 
 Package coordinates are module-specific and follow this pattern:
 - **Group**: `org.cescfe`
-- **Artifact**: `book-publishing-<spec-name>-api-spec`
+- **Artifact**: `book-publishing-<spec-name>-spec`
 - **Version**: your published version
 - **Repository**: Google Artifact Registry
 

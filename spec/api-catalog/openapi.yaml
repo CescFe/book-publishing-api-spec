@@ -1,7 +1,7 @@
 openapi: 3.1.2
 info:
   title: Book Publishing API Catalog
-  version: 0.1.1
+  version: 0.1.2
   description: |-
     Public API for consuming information about books, authors, and collections in a publishing system.
     This API provides read-only operations for books, collections and authors.
@@ -47,3 +47,5 @@ components:
       $ref: './book/components/schemas/book-summary.yaml#/BookSummary'
     Status:
       $ref: './book/components/schemas/enums/status.yaml#/Status'
+    MetaPaginated:
+      $ref: './shared/components/schemas/meta.yaml#/MetaPaginated'
