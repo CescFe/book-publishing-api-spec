@@ -1,7 +1,7 @@
 def developerId = "FrancescFe"
 def repositoryUrl = "https://github.com/CescFe/book-publishing-api-spec"
 def specName = project.name
-def artifactName = "book-publishing-${specName}-api-spec"
+def artifactName = "book-publishing-${specName}-spec"
 def openApiPackage = "org.cescfe.bookpublishing.${specName.replace('-', '.')}.infrastructure.openapi"
 def inputSpecPath = layout.projectDirectory.file("openapi.yaml").asFile.absolutePath
 def generatedDir = layout.buildDirectory.dir("generated-sources/openapi").get().asFile.absolutePath

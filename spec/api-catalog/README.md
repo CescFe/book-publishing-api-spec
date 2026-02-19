@@ -36,8 +36,8 @@ Generated files are placed in `spec/api-catalog/build/generated-sources/openapi/
 
 Package coordinates:
 - **Group**: `org.cescfe`
-- **Artifact**: `book-publishing-api-catalog-api-spec`
-- **Version**: from `-PpackageVersion` (default `0.1.0`)
+- **Artifact**: `book-publishing-api-catalog-spec`
+- **Version**: from `-PpackageVersion`
 - **Repository**: Google Artifact Registry
 
 ## Release Tag Format

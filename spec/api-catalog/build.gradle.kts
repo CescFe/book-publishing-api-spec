@@ -6,6 +6,6 @@ plugins {
     alias(libs.plugins.artifactregistry)
 }
 
-version = providers.gradleProperty("packageVersion").orElse("0.1.1").get()
+version = providers.gradleProperty("packageVersion").orElse("0.1.2").get()
 
 apply(from = rootProject.file("gradle/spec-module.gradle"))
