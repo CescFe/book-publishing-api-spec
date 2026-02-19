@@ -1,5 +1,4 @@
 CollectionRef:
-  title: CollectionRef
   type: object
   required:
     - id

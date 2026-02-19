@@ -1,5 +1,4 @@
 AuthorRef:
-  title: AuthorRef
   type: object
   required:
     - id
