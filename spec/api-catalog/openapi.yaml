@@ -51,57 +51,7 @@ paths:
 
 components:
   schemas:
-    Id:
-      $ref: './shared/components/schemas/id.yaml#/Id'
     MetaPaginated:
       $ref: './shared/components/schemas/meta.yaml#/MetaPaginated'
-    Status:
-      $ref: './book/components/schemas/enums/status.yaml#/Status'
-    AuthorRef:
-      $ref: './book/components/schemas/refs/author-ref.yaml#/AuthorRef'
-    CollectionRef:
-      $ref: './book/components/schemas/refs/collection-ref.yaml#/CollectionRef'
     BookSummary:
-      type: object
-      required:
-        - id
-        - title
-        - author
-        - collection
-        - base_price
-        - final_price
-        - isbn
-        - status
-      properties:
-        id:
-          $ref: '#/components/schemas/Id'
-        title:
-          type: string
-          description: Book title
-          minLength: 1
-          maxLength: 200
-          example: "The Lord of the Rings"
-        author:
-          $ref: '#/components/schemas/AuthorRef'
-        collection:
-          $ref: '#/components/schemas/CollectionRef'
-        base_price:
-          type: number
-          format: double
-          minimum: 0
-          multipleOf: 0.01
-          description: "Base price in euros"
-          example: 19.95
-        final_price:
-          type: number
-          format: double
-          readOnly: true
-          description: "Final price including VAT"
-          example: 20.748
-        isbn:
-          type: string
-          pattern: '^(978|979)\d{10}$'
-          description: "Unique ISBN-13 identifier"
-          example: "9780547928227"
-        status:
-          $ref: '#/components/schemas/Status'
+      $ref: './book/components/schemas/book-summary.yaml#/BookSummary'
