@@ -10,7 +10,7 @@ Main OpenAPI file: `spec/api-catalog/openapi.yaml`
 
 ## API Endpoints
 
-No endpoints are defined yet in `openapi.yaml`.
+- `GET /api/v1/books`: list books with pagination.
 
 ## Local Development
 

@@ -1,7 +1,7 @@
 ---
 name: 📋 API Specification Change
 about: Implement a change for the API specification
-title: '[API] '
+title: '[SPEC] '
 labels: api-change
 assignees: FrancescFe
 ---

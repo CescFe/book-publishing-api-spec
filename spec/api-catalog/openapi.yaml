@@ -1,7 +1,7 @@
 openapi: 3.1.2
 info:
   title: Book Publishing API Catalog
-  version: 0.1.0
+  version: 0.1.1
   description: |-
     Public API for consuming information about books, authors, and collections in a publishing system.
     This API provides read-only operations for books, collections and authors.
@@ -29,8 +29,79 @@ paths:
         - $ref: './shared/components/parameters/pagination.yaml#/page'
       responses:
         '200':
-          $ref: './book/components/responses/books-list-paginated.yaml'
+          description: Paginated list of books retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - meta
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/BookSummary'
+                  meta:
+                    $ref: '#/components/schemas/MetaPaginated'
         '400':
           $ref: './shared/components/responses/errors/bad-request.yaml'
         '500':
           $ref: './shared/components/responses/errors/internal-error.yaml'
+
+components:
+  schemas:
+    Id:
+      $ref: './shared/components/schemas/id.yaml#/Id'
+    MetaPaginated:
+      $ref: './shared/components/schemas/meta.yaml#/MetaPaginated'
+    Status:
+      $ref: './book/components/schemas/enums/status.yaml#/Status'
+    AuthorRef:
+      $ref: './book/components/schemas/refs/author-ref.yaml#/AuthorRef'
+    CollectionRef:
+      $ref: './book/components/schemas/refs/collection-ref.yaml#/CollectionRef'
+    BookSummary:
+      type: object
+      required:
+        - id
+        - title
+        - author
+        - collection
+        - base_price
+        - final_price
+        - isbn
+        - status
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        title:
+          type: string
+          description: Book title
+          minLength: 1
+          maxLength: 200
+          example: "The Lord of the Rings"
+        author:
+          $ref: '#/components/schemas/AuthorRef'
+        collection:
+          $ref: '#/components/schemas/CollectionRef'
+        base_price:
+          type: number
+          format: double
+          minimum: 0
+          multipleOf: 0.01
+          description: "Base price in euros"
+          example: 19.95
+        final_price:
+          type: number
+          format: double
+          readOnly: true
+          description: "Final price including VAT"
+          example: 20.748
+        isbn:
+          type: string
+          pattern: '^(978|979)\d{10}$'
+          description: "Unique ISBN-13 identifier"
+          example: "9780547928227"
+        status:
+          $ref: '#/components/schemas/Status'
