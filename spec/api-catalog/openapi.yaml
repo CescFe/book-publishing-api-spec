@@ -33,17 +33,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                required:
-                  - data
-                  - meta
-                properties:
-                  data:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/BookSummary'
-                  meta:
-                    $ref: '#/components/schemas/MetaPaginated'
+                $ref: '#/components/schemas/ListBooksPaginated200Response'
         '400':
           $ref: './shared/components/responses/errors/bad-request.yaml'
         '500':
@@ -51,8 +41,8 @@ paths:
 
 components:
   schemas:
-    MetaPaginated:
-      $ref: './shared/components/schemas/meta.yaml#/MetaPaginated'
+    ListBooksPaginated200Response:
+      $ref: './book/components/responses/books-list-paginated.yaml#/BooksListPaginated'
     BookSummary:
       $ref: './book/components/schemas/book-summary.yaml#/BookSummary'
     Status:
